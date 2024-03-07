@@ -4,29 +4,29 @@ import java.time.LocalDate;
 
 public class Casa {
     private int id;
-    private String nombrePropiedad;
-    private double precio;
-    private String tipo;
-    private int numHabitaciones;
-    private int numBannos;
-    private double superficie;
-    private String direccion;
-    private String descripcion;
-    private LocalDate fecha;
+    private String name;
+    private double price;
+    private String type;
+    private int rooms;
+    private int bathrooms;
+    private double sqmetres;
+    private String adress;
+    private String description;
+    private LocalDate constructionDate;
 
     public Casa() {
     }
 
-    public Casa(String nombrePropiedad, double precio, String tipo, int numHabitaciones, int numBannos, double superficie, String direccion, String descripcion, LocalDate fecha) {
-        this.nombrePropiedad = nombrePropiedad;
-        this.precio = precio;
-        this.tipo = tipo;
-        this.numHabitaciones = numHabitaciones;
-        this.numBannos = numBannos;
-        this.superficie = superficie;
-        this.direccion = direccion;
-        this.descripcion = descripcion;
-        this.fecha = fecha;
+    public Casa(String name, double price, String type, int rooms, int bathrooms, double sqmetres, String adress, String description, LocalDate constructionDate) {
+        this.name = name;
+        this.price = price;
+        this.type = type;
+        this.rooms = rooms;
+        this.bathrooms = bathrooms;
+        this.sqmetres = sqmetres;
+        this.adress = adress;
+        this.description = description;
+        this.constructionDate = constructionDate;
     }
 
     public int getId() {
@@ -37,75 +37,75 @@ public class Casa {
         this.id = id;
     }
 
-    public String getNombrePropiedad() {
-        return nombrePropiedad;
+    public String getName() {
+        return name;
     }
 
-    public void setNombrePropiedad(String nombrePropiedad) {
-        this.nombrePropiedad = nombrePropiedad;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public double getPrecio() {
-        return precio;
+    public double getPrice() {
+        return price;
     }
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getType() {
+        return type;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public int getNumHabitaciones() {
-        return numHabitaciones;
+    public int getRooms() {
+        return rooms;
     }
 
-    public void setNumHabitaciones(int numHabitaciones) {
-        this.numHabitaciones = numHabitaciones;
+    public void setRooms(int rooms) {
+        this.rooms = rooms;
     }
 
-    public int getNumBannos() {
-        return numBannos;
+    public int getBathrooms() {
+        return bathrooms;
     }
 
-    public void setNumBannos(int numBannos) {
-        this.numBannos = numBannos;
+    public void setBathrooms(int bathrooms) {
+        this.bathrooms = bathrooms;
     }
 
-    public double getSuperficie() {
-        return superficie;
+    public double getSqmetres() {
+        return sqmetres;
     }
 
-    public void setSuperficie(double superficie) {
-        this.superficie = superficie;
+    public void setSqmetres(double sqmetres) {
+        this.sqmetres = sqmetres;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public String getAdress() {
+        return adress;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setAdress(String adress) {
+        this.adress = adress;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public LocalDate getFecha() {
-        return fecha;
+    public LocalDate getConstructionDate() {
+        return constructionDate;
     }
 
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
+    public void setConstructionDate(LocalDate constructionDate) {
+        this.constructionDate = constructionDate;
     }
 }
