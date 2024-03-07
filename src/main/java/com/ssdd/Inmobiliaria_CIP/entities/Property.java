@@ -3,13 +3,13 @@ package com.ssdd.Inmobiliaria_CIP.entities;
 import java.time.LocalDate;
 
 public class Property {
-    private int id;
+    private Long id;
     private String name;
     private double price;
     private String type;
     private int rooms;
     private int bathrooms;
-    private double sqmetres;
+    private double sqMetres;
     private String adress;
     private String description;
     private LocalDate constructionDate;
@@ -17,23 +17,24 @@ public class Property {
     public Property() {
     }
 
-    public Property(String name, double price, String type, int rooms, int bathrooms, double sqmetres, String adress, String description, LocalDate constructionDate) {
+    public Property(String name, double price, String type, int rooms, int bathrooms, double sqMetres, String adress, String description, LocalDate constructionDate) {
         this.name = name;
         this.price = price;
         this.type = type;
         this.rooms = rooms;
         this.bathrooms = bathrooms;
-        this.sqmetres = sqmetres;
+        this.sqMetres = sqMetres;
         this.adress = adress;
         this.description = description;
         this.constructionDate = constructionDate;
     }
 
-    public int getId() {
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -78,11 +79,11 @@ public class Property {
     }
 
     public double getSqmetres() {
-        return sqmetres;
+        return sqMetres;
     }
 
-    public void setSqmetres(double sqmetres) {
-        this.sqmetres = sqmetres;
+    public void setSqmetres(double sqMetres) {
+        this.sqMetres = sqMetres;
     }
 
     public String getAdress() {
