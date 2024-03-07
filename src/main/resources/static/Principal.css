@@ -1,11 +1,28 @@
-.container {
+
+body {
+    background-color: beige;
+    font-family: "Times New Roman";
+}
+.intro {
     display: flex;
-    align-content: center;
+}
+.header {
+    color: black;
+    text-align: center;
+    width: 50%;
+    height: 500px;
+    font-size: xx-large;
 }
 
-.box {
-    width: 100px;
-    height: 100px;
-    background-color: lightblue;
-    margin-right: 10px;
+div.container {
+    display: flex;
+    justify-content: center;
+}
+
+button.box {
+    width: 300px;
+    height: 200px;
+
+    margin-right: 50px;
+    margin-left: 50px;
 }
