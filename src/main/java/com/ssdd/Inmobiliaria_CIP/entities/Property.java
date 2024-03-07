@@ -2,7 +2,7 @@ package com.ssdd.Inmobiliaria_CIP.entities;
 
 import java.time.LocalDate;
 
-public class Casa {
+public class Property {
     private int id;
     private String name;
     private double price;
@@ -14,10 +14,10 @@ public class Casa {
     private String description;
     private LocalDate constructionDate;
 
-    public Casa() {
+    public Property() {
     }
 
-    public Casa(String name, double price, String type, int rooms, int bathrooms, double sqmetres, String adress, String description, LocalDate constructionDate) {
+    public Property(String name, double price, String type, int rooms, int bathrooms, double sqmetres, String adress, String description, LocalDate constructionDate) {
         this.name = name;
         this.price = price;
         this.type = type;
