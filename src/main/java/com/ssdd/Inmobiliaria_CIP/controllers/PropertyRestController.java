@@ -4,10 +4,7 @@ import com.ssdd.Inmobiliaria_CIP.entities.Property;
 import com.ssdd.Inmobiliaria_CIP.services.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,16 +19,48 @@ public class PropertyRestController {
 
     public PropertyRestController () {}
 
-
     @GetMapping
     public ResponseEntity<List<Property>> getProperties() {
-        return ResponseEntity.ok().body(propertyService.getProperties());
+        List<Property> properties = propertyService.getProperties();
+        if (properties.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(properties);
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<Property> createProperty(Property property) {
+    @GetMapping("/{id}")
+    public ResponseEntity<Property> getProperty(@PathVariable int id) {
+        Property property = propertyService.getProperty(id);
+        if (property != null) {
+            return ResponseEntity.ok(property);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @PostMapping
+    public ResponseEntity<Property> createProperty(@RequestBody Property property) {
         Property property1 = propertyService.createProperty(property);
-        return ResponseEntity.ok().body(property1);
+        if (property1 != null) {
+            return ResponseEntity.ok(property1);
+        }
+        return ResponseEntity.badRequest().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Property> deleteProperty(@PathVariable int id) {
+        if (propertyService.deleteProperty(id) != null) {
+            return ResponseEntity.noContent().build(); // Es lo mismo que un .status(204)
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Property> updateProperty(@PathVariable int id, @RequestBody Property property) {
+        Property updatedProperty = propertyService.updateProperty(id, property);
+        if (updatedProperty != null) {
+            return ResponseEntity.ok(updatedProperty);
+        }
+        return ResponseEntity.notFound().build();
     }
 
 

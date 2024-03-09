@@ -1,40 +1,40 @@
 package com.ssdd.Inmobiliaria_CIP.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.time.LocalDate;
 
 public class Property {
-    private Long id;
+    private int id;
     private String name;
     private double price;
     private String type;
     private int rooms;
     private int bathrooms;
     private double sqMetres;
-    private String adress;
+    private String address;
     private String description;
-    private LocalDate constructionDate;
+
 
     public Property() {
     }
 
-    public Property(String name, double price, String type, int rooms, int bathrooms, double sqMetres, String adress, String description, LocalDate constructionDate) {
+    public Property(String name, double price, String type, int rooms, int bathrooms, double sqMetres, String address, String description) {
         this.name = name;
         this.price = price;
         this.type = type;
         this.rooms = rooms;
         this.bathrooms = bathrooms;
         this.sqMetres = sqMetres;
-        this.adress = adress;
+        this.address = address;
         this.description = description;
-        this.constructionDate = constructionDate;
     }
 
-
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -78,20 +78,20 @@ public class Property {
         this.bathrooms = bathrooms;
     }
 
-    public double getSqmetres() {
+    public double getSqMetres() {
         return sqMetres;
     }
 
-    public void setSqmetres(double sqMetres) {
+    public void setSqMetres(double sqMetres) {
         this.sqMetres = sqMetres;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getDescription() {
@@ -100,13 +100,5 @@ public class Property {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public LocalDate getConstructionDate() {
-        return constructionDate;
-    }
-
-    public void setConstructionDate(LocalDate constructionDate) {
-        this.constructionDate = constructionDate;
     }
 }
