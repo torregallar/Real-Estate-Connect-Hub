@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Propiedades</title>
+</head>
+<body>
+
+<h1>{{property.name}}</h1>
+    {{#property}}
+        <div>
+            <strong>Price:</strong> {{property.price}}<br>
+            <strong>Type:</strong> {{property.type}}<br>
+            <strong>Rooms:</strong> {{property.rooms}}<br>
+            <strong>Bathrooms:</strong> {{property.bathrooms}}<br>
+            <strong>Surface:</strong> {{property.sqMetres}}<br>
+            <strong>Address:</strong> {{property.address}}<br>
+            <strong>Description:</strong> {{property.description}}<br>
+        </div>
+    {{/property}}
+</body>
+</html>
