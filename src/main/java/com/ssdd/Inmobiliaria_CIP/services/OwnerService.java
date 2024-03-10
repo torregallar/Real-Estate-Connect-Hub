@@ -26,4 +26,21 @@ public class OwnerService {
         return new ArrayList<>(owners.values());
     }
 
+    public Owner getOwner(int id){
+        return owners.get(id);
+    }
+
+    public Owner deleteOwner(int id){
+        return owners.remove(id);
+    }
+
+    public Owner updateOwner(int id, Owner owner) {
+        if (owners.containsKey(id)) {
+            owner.setId(id);
+            owners.put(id, owner);
+            return owner;
+        }
+        return null;
+    }
+
 }
