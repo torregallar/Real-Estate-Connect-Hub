@@ -11,7 +11,6 @@ public class Owner {
     private Date dob; //date of birth
     private String phoneNumber;
     private String email;
-    private List<Property> propertyList;
 
     public Owner() {
     }
@@ -22,7 +21,6 @@ public class Owner {
         this.dob = dob;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.propertyList = new ArrayList<>();
     }
 
     public int getId() {
@@ -71,13 +69,5 @@ public class Owner {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public List<Property> getPropertyList() {
-        return propertyList;
-    }
-
-    public void setPropertyList(List<Property> propertyList) {
-        this.propertyList = propertyList;
     }
 }

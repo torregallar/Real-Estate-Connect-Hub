@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 
 @RestController
@@ -57,6 +59,15 @@ public class PropertyRestController {
     @PutMapping("/{id}")
     public ResponseEntity<Property> updateProperty(@PathVariable int id, @RequestBody Property property) {
         Property updatedProperty = propertyService.updateProperty(id, property);
+        if (updatedProperty != null) {
+            return ResponseEntity.ok(updatedProperty);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @PatchMapping("{id}")
+    public ResponseEntity<Property> updatePropertyFields(@PathVariable int id, Map<String, Object> fields) {
+        Property updatedProperty = propertyService.updatePropertyFields(id, fields);
         if (updatedProperty != null) {
             return ResponseEntity.ok(updatedProperty);
         }

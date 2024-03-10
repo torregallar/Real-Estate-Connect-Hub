@@ -3,7 +3,9 @@ package com.ssdd.Inmobiliaria_CIP.services;
 import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import com.ssdd.Inmobiliaria_CIP.entities.Property;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ReflectionUtils;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -44,6 +46,20 @@ public class PropertyService {
             property.setId(id);
             properties.put(id, property);
             return property;
+        }
+        return null;
+    }
+
+    public Property updatePropertyFields(int id, Map<String, Object> fields) {
+        Property propertyToUpdate = properties.get(id);
+        if (propertyToUpdate != null) {
+            fields.forEach((name, value)-> {
+                Field field = ReflectionUtils.findField(Property.class, name);
+                field.setAccessible(true);
+                ReflectionUtils.setField(field, propertyToUpdate, value);
+            });
+            properties.put(id, propertyToUpdate);
+            return propertyToUpdate;
         }
         return null;
     }
