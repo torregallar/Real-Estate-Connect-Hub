@@ -2,7 +2,9 @@ package com.ssdd.Inmobiliaria_CIP.services;
 
 import com.ssdd.Inmobiliaria_CIP.entities.Owner;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ReflectionUtils;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -39,6 +41,20 @@ public class OwnerService {
             owner.setId(id);
             owners.put(id, owner);
             return owner;
+        }
+        return null;
+    }
+
+    public Owner updateOwnerFields(int id, Map<String, Object> fields){
+        Owner ownerToUpdate = owners.get(id);
+        if(ownerToUpdate != null){
+            fields.forEach((name,value)->{
+                Field field = ReflectionUtils.findField(Owner.class, name);
+                field.setAccessible(true);
+                ReflectionUtils.setField(field, ownerToUpdate, value);
+            });
+            owners.put(id, ownerToUpdate);
+            return ownerToUpdate;
         }
         return null;
     }

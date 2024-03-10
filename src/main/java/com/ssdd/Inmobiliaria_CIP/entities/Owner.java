@@ -8,17 +8,16 @@ public class Owner {
     private int id;
     private String name;
     private String lastName;
-    private Date dob; //date of birth
+
     private String phoneNumber;
     private String email;
 
     public Owner() {
     }
 
-    public Owner( String name, String lastName, Date dob, String phoneNumber, String email) {
+    public Owner( String name, String lastName,  String phoneNumber, String email) {
         this.name = name;
         this.lastName = lastName;
-        this.dob = dob;
         this.phoneNumber = phoneNumber;
         this.email = email;
     }
@@ -47,13 +46,6 @@ public class Owner {
         this.lastName = lastName;
     }
 
-    public Date getDob() {
-        return dob;
-    }
-
-    public void setDob(Date dob) {
-        this.dob = dob;
-    }
 
     public String getPhoneNumber() {
         return phoneNumber;
