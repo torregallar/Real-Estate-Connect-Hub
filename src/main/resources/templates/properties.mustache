@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property List</title>
+</head>
+<body>
+<h1>Property List</h1>
+<ul>
+    {{#properties}}
+        <li>
+            <a href="/property/{{id}}"><strong>Name:</strong> {{name}}<br></a>
+            <a><strong>Price:</strong> {{price}}<br></a>
+            <a><strong>Type:</strong> {{type}}<br></a>
+            <a><strong>Rooms:</strong> {{rooms}}<br></a>
+            <a><strong>Bathrooms:</strong> {{bathrooms}}<br></a>
+            <a><strong>Surface:</strong> {{sqMetres}}<br></a>
+            <a><strong>Address:</strong> {{address}}<br></a>
+            <a><strong>Description:</strong> {{description}}<br></a>
+        </li>
+    {{/properties}}
+    <br><br>
+
+    <button onclick="window.location.href='/create-property.html'" class="option">
+        Create Property
+    </button>
+
+
+</ul>
+</body>
+</html>

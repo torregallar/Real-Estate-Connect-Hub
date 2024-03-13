@@ -50,7 +50,7 @@ public class PropertyService {
         return null;
     }
 
-    public Property updatePropertyFields(int id, Map<String, Object> fields) {
+    public Property updatePropertyFields(int id, Map<String, Object> fields) { // Patch function
         Property propertyToUpdate = properties.get(id);
         if (propertyToUpdate != null) {
             fields.forEach((name, value)-> {
