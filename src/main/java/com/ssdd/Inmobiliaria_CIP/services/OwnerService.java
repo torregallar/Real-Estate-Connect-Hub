@@ -58,5 +58,4 @@ public class OwnerService {
         }
         return null;
     }
-
 }
