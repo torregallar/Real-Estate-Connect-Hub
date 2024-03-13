@@ -32,8 +32,8 @@ public class PropertyController {
     }
 
     @PostMapping("/properties/createProperty")
-    public String createProperty (Property property, Model model) {
-        propertyService.createProperty(property);;
+    public String createProperty (Property property) {
+        propertyService.createProperty(property);
         return "redirect:/properties";
     }
 

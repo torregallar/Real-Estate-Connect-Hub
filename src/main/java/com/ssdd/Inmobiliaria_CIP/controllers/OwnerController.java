@@ -26,9 +26,9 @@ public class OwnerController {
         Owner owner = ownerService.getOwner(id);
         if(owner != null){
             model.addAttribute("owner", owner);
-            return "owner-details";
+            return "owners-details";
         }
-        return "redirect/owners";
+        return "redirect:/owners";
     }
 
     @PostMapping("/owners/createOwner")

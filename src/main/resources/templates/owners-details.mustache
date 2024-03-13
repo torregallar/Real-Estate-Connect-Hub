@@ -7,10 +7,9 @@
 </head>
 <body>
 
-<h1>{{owner.name}}</h1>
+<h1>{{owner.name}} {{owner.lastName}}</h1>
     {{#owner}}
         <div>
-            <strong>Last name:</strong> {{owner.lastName}}<br>
             <strong>Phone number:</strong> {{owner.phoneNumber}}<br>
             <strong>Email:</strong> {{owner.email}}<br>
         </div>
@@ -19,7 +18,7 @@
     <form action="/owner/deleteOwner/{{owner.id}}">
         <button type="submit">Delete owner</button>
     </form>
-    <button onclick="window.location.href='/property/modify/{{owner.id}}'">
+    <button onclick="window.location.href='/owner/modify/{{owner.id}}'">
         Modify Owner
     </button>
     <br><br>
