@@ -28,7 +28,7 @@ public class PropertyController {
             model.addAttribute("property", property);
             return "property-details";
         }
-        return "redirect/properties";
+        return "redirect:/properties";
     }
 
     @PostMapping("/properties/createProperty")
