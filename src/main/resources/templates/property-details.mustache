@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Propiedades</title>
+    <title>Property details</title>
 </head>
 <body>
 
@@ -19,5 +19,14 @@
             <strong>Description:</strong> {{property.description}}<br>
         </div>
     {{/property}}
+    <br>
+    <form action="/property/deleteProperty/{{property.id}}">
+        <button type="submit">Delete property</button>
+    </form>
+    <button onclick="window.location.href='/property/modify/{{property.id}}'">
+        Modify Property
+    </button>
+    <br><br>
+    <a href="/properties">Property List</a>
 </body>
 </html>

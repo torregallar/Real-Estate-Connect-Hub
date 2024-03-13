@@ -10,7 +10,7 @@
 <ul>
     {{#properties}}
         <li>
-            <a href="/properties/{{id}}"><strong>Name:</strong> {{name}}<br></a>
+            <a href="/property/{{id}}"><strong>Name:</strong> {{name}}<br></a>
             <a><strong>Price:</strong> {{price}}<br></a>
             <a><strong>Type:</strong> {{type}}<br></a>
             <a><strong>Rooms:</strong> {{rooms}}<br></a>
@@ -20,6 +20,13 @@
             <a><strong>Description:</strong> {{description}}<br></a>
         </li>
     {{/properties}}
+    <br><br>
+
+    <button onclick="window.location.href='/create-property.html'" class="option">
+        Create Property
+    </button>
+
+
 </ul>
 </body>
 </html>
