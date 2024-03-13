@@ -65,8 +65,8 @@ public class PropertyRestController {
         return ResponseEntity.notFound().build();
     }
 
-    @PatchMapping("{id}")
-    public ResponseEntity<Property> updatePropertyFields(@PathVariable int id, Map<String, Object> fields) {
+    @PatchMapping("/{id}")
+    public ResponseEntity<Property> updatePropertyFields(@PathVariable int id, @RequestBody Map<String, Object> fields) {
         Property updatedProperty = propertyService.updatePropertyFields(id, fields);
         if (updatedProperty != null) {
             return ResponseEntity.ok(updatedProperty);
