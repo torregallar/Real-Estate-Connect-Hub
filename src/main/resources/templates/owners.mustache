@@ -6,23 +6,24 @@
     <title>Owners List</title>
 </head>
 <body>
-<h1>Owners List</h1>
-<ul>
-    {{#owners}}
-        <li>
-            <a href="/owner/{{id}}"><strong>Name:</strong> {{name}}<br></a>
-            <a><strong>Last name:</strong> {{lastName}}<br></a>
-            <a><strong>Phone number:</strong> {{phoneNumber}}<br></a>
-            <a><strong>Email:</strong> {{email}}<br></a>
-        </li>
-    {{/owners}}
-    <br><br>
-    <button onclick="window.location.href='/create-owner.html'" class="option">
-        Create Owner
-    </button>
-    <br><br>
-    <a href="/" >back to principal page</a>
 
-</ul>
+    <h1>Owners List</h1>
+
+    <ul>
+        {{#owners}}
+            <li>
+                <strong>Name:</strong><a href="/owner/{{id}}">{{name}}</a><br>
+                <strong>Last name:</strong> {{lastName}}<br>
+                <strong>Phone number:</strong> {{phoneNumber}}<br>
+                <strong>Email:</strong> {{email}}<br>
+            </li>
+        {{/owners}}
+        <br><br>
+        <button onclick="window.location.href='/create-owner.html'" class="option">
+            Create Owner
+        </button>
+        <br><br>
+        <a href="/" >back to principal page</a>
+    </ul>
 </body>
 </html>

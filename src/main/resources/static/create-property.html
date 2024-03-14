@@ -5,35 +5,40 @@
     <title>Create property</title>
 </head>
 <body>
-<h1>Property details</h1>
-<form action="/properties/createProperty" method="post">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" value="" required>
-    <br><br>
-    <label for="price">Price:</label>
-    <input type="text" id="price" name="price" value="" required>
-    <br><br>
-    <label for="type">Type:</label>
-    <input type="text" id="type" name="type" value="" required>
-    <br><br>
-    <label for="rooms">Rooms:</label>
-    <input type="text" id="rooms" name="rooms" value="" required>
-    <br><br>
-    <label for="bathrooms">Bathrooms:</label>
-    <input type="text" id="bathrooms" name="bathrooms" value="" required>
-    <br><br>
-    <label for="sqMetres">Surface(m2):</label>
-    <input type="text" id="sqMetres" name="sqMetres" value="" required>
-    <br><br>
-    <label for="address">Address:</label>
-    <input type="text" id="address" name="address" value="" required>
-    <br><br>
-    <label for="description">Description:</label>
-    <input type="text" id="description" name="description" value="" required>
-    <br><br>
-    <button type="submit">Create Property</button>
-    <br>
-</form>
-<a href="/properties">Property list</a>
+    <h1>Create aroperty</h1>
+    <form action="/properties/createProperty" method="post">
+        <fieldset>
+
+            <h2>Property details</h2>
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="" required>
+            <br><br>
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price" value="" required>
+            <br><br>
+            <label for="type">Type:</label>
+            <input type="text" id="type" name="type" value="" required>
+            <br><br>
+            <label for="rooms">Rooms:</label>
+            <input type="number" id="rooms" name="rooms" value="" required>
+            <br><br>
+            <label for="bathrooms">Bathrooms:</label>
+            <input type="number" id="bathrooms" name="bathrooms" value="" required>
+            <br><br>
+            <label for="sqMetres">Surface(m2):</label>
+            <input type="number" id="sqMetres" name="sqMetres" value="" required>
+            <br><br>
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" value="" required>
+            <br><br>
+            <label for="description">Description:</label>
+            <input type="text" id="description" name="description" value="" required>
+            <br><br>
+            <button type="submit">Create Property</button>
+            <br>
+        </fieldset>
+    </form>
+    <a href="/properties">Property list</a>
 </body>
 </html>

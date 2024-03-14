@@ -1,0 +1,36 @@
+
+body {
+    background: beige;
+    font-family: Dubai, serif;
+}
+
+h1 {
+    color: darkgreen;
+}
+
+h2 {
+    color: darkgreen;
+}
+
+h2 {
+    color: darkgreen;
+}
+
+.header {
+    color: darkgreen;
+    text-align: center;
+    height: 100px;
+}
+
+div.container {
+    display: flex;
+    justify-content: center;
+}
+
+.ownerOptions, .agencyOptions, .propertyOptions {
+    display: flex;
+}
+
+.entity-principal {
+    align-self: center;
+}
