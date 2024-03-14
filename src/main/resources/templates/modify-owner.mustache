@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Modify owner</title>
+</head>
+<body>
+<h1>Owner details</h1>
+<form action="/owner/modify/{{owner.id}}" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" value="{{owner.name}}" required>
+    <br><br>
+    <label for="lastName">Last name:</label>
+    <input type="text" id="lastName" name="lastName" value="{{owner.lastName}}" required>
+    <br><br>
+    <label for="phoneNumber">Phone number:</label>
+    <input type="text" id="phoneNumber" name="phoneNumber" value="{{owner.phoneNumber}}" required>
+    <br><br>
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email" value="{{owner.email}}" required>
+    <br><br>
+
+    <button type="submit">Modify Owner</button>
+    <br>
+</form>
+<a href="/owners">Owner list</a>
+</body>
+</html>

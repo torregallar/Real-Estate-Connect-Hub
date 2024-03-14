@@ -28,12 +28,12 @@ public class PropertyController {
             model.addAttribute("property", property);
             return "property-details";
         }
-        return "redirect/properties";
+        return "redirect:/properties";
     }
 
     @PostMapping("/properties/createProperty")
-    public String createProperty (Property property, Model model) {
-        propertyService.createProperty(property);;
+    public String createProperty (Property property) {
+        propertyService.createProperty(property);
         return "redirect:/properties";
     }
 
