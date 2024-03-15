@@ -1,30 +1,32 @@
 
 body {
     background: beige;
-    font-family: Dubai, serif;
+    font-family: "Open Sans", sans-serif;
 }
 
 h1 {
     color: darkgreen;
+    text-align: center;
 }
 
 h2 {
     color: darkgreen;
+    text-align: center;
 }
 
-h2 {
+h3 {
     color: darkgreen;
+    text-align: center;
+}
+
+p {
+    text-align: justify;
 }
 
 .header {
     color: darkgreen;
     text-align: center;
     height: 100px;
-}
-
-div.container {
-    display: flex;
-    justify-content: center;
 }
 
 .ownerOptions, .agencyOptions, .propertyOptions {
@@ -34,3 +36,8 @@ div.container {
 .entity-principal {
     align-self: center;
 }
+
+.entity-button:hover {
+    background-color: yellowgreen;
+}
+
