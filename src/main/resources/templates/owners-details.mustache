@@ -4,18 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Owners list</title>
+
+    <link rel="icon" type="image/png" href="/images/CIP_Icon.png">
 </head>
 <body>
 
 <h1>{{owner.name}} {{owner.lastName}}</h1>
     {{#owner}}
-        <div>
+        <datalist>
             <strong>Phone number:</strong> {{owner.phoneNumber}}<br>
             <strong>Email:</strong> {{owner.email}}<br>
-        </div>
+        </datalist>
     {{/owner}}
     <br>
-    <form action="/owner/deleteOwner/{{owner.id}}">
+    <form action="/owner/deleteOwner/{{owner.id}}" method="post">
         <button type="submit">Delete owner</button>
     </form>
     <button onclick="window.location.href='/owner/modify/{{owner.id}}'">

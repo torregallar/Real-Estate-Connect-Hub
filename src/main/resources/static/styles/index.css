@@ -1,0 +1,43 @@
+
+body {
+    background: beige;
+    font-family: "Open Sans", sans-serif;
+}
+
+h1 {
+    color: darkgreen;
+    text-align: center;
+}
+
+h2 {
+    color: darkgreen;
+    text-align: center;
+}
+
+h3 {
+    color: darkgreen;
+    text-align: center;
+}
+
+p {
+    text-align: justify;
+}
+
+.header {
+    color: darkgreen;
+    text-align: center;
+    height: 100px;
+}
+
+.ownerOptions, .agencyOptions, .propertyOptions {
+    display: flex;
+}
+
+.entity-principal {
+    align-self: center;
+}
+
+.entity-button:hover {
+    background-color: yellowgreen;
+}
+

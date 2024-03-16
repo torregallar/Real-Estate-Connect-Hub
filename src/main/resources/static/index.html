@@ -4,42 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inmobiliaria CIP</title>
-    <link rel="stylesheet" href="Principal.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="icon" type="image/png" href="/images/CIP_Icon.png">
 </head>
 <body>
+    <header class="header">
+        <h1>Inmobiliaria CIP</h1>
+        <footer>
+            <small>
+                Carlos Bolívar Álvarez - Patricia Landa Stokman - Iván Torregrosa Mateo <!-- Creators -->
+            </small>
+        </footer>
+    </header>
 
-<div class="intro">
-    <h1 class="header">Inmobiliaria CIP</h1>
+    <section class="intro">
+        <h2 class="intro-title">Our Philosophy</h2>
+        <p class="description-text">
+            Welcome to Inmobiliaria CIP, dedicated to fostering peace and harmony in real estate
+            for both property owners and tenants alike.
+        </p>
+        <p class="description-text">
+            In today's fast-paced world, finding a tranquil and harmonious living space is more important than ever.
+            At Inmobiliaria CIP, we understand the significance of creating a space that serves as havens of
+            tranquility amidst the chaos of everyday life.
+        </p>
+        <p class="description-text">
+            Our mission is to ensure that <a href="#agencies"> real estate agencies</a>,
+            <a href="#owners">property owners</a>, and tenants have access to the resources and
+            support they need to cultivate a sense of peace
+            and harmony in their homes. Whether you're a real estate agency striving to create
+            serene living environments, a homeowner looking to sell your <a href="#properties">awesome properties</a>,
+            or a tenant seeking a cozy dwelling, we're here to help.
+        </p>
+        <p class="description-text">
+            Join us in our mission to create a world where every home is a place of refuge and every community is a
+            beacon of harmony. Together, let's build a brighter future where peace and
+            serenity are cherished values in real estate.
+        </p>
+    </section>
 
-    <div class="description">
-        <p>
-            Real Estate Agent CIP comes to live with one mission, convert Real Estate Industry in a better
-            place. Buyers, owners, agencies, will have a place where they will be able to achieve their own
-            goals making great relationships, and find whatever they want.
-        </p><br>
-        <p>Carlos Bolívar Álvarez - Patricia Landa Stokman - Iván Torregrosa Mateo</p>
-    </div>
+    <main>
+        <section class="entity-principal" id="agencies">
+            <h3 class="entity-header">Agencies</h3>
+            <button onclick="window.location.href='/agencies'" class="entity-button">
+                Real Estate Agencies
+            </button>
+            <button onclick="window.location.href='/create-agency.html'" class="entity-button">
+                Real Estate Agencies
+            </button>
+        </section>
 
-</div>
+        <section class="entity-principal" id="properties">
+            <h3 class="entity-header">Properties</h3>
+            <button onclick="window.location.href='/properties'" class="entity-button">
+                Properties
+            </button>
+            <button onclick="window.location.href='/create-property.html'" class="entity-button">
+                Create Property
+            </button>
+        </section>
 
-<div class="container">
-    <button onclick="window.location.href='/properties'" class="option">
-        Properties
-    </button>
-    <button onclick="window.location.href='/create-property.html'" class="option">
-        Create Property
-    </button>
-    <button class="option">
-        Real Estate Agencies
-    </button>
-    <button onclick="window.location.href='/owners'" class="option">
-        Owners
-    </button>
-    <button onclick="window.location.href='/create-owner.html'" class="option">
-        Create Owner
-    </button>
-</div>
+        <section class="entity-principal" id="owners">
+            <h3 class="entity-header">Owners</h3>
+            <button id="owners-button" onclick="window.location.href='/owners'" class="entity-button">
+                Owners
+            </button>
+            <button onclick="window.location.href='/create-owner.html'" class="entity-button">
+                Create Owner
+            </button>
+        </section>
+    </main>
 
+    <script>
 
+    </script>
 </body>
+
+
 </html>
