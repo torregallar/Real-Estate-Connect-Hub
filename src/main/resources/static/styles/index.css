@@ -1,43 +1,72 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
 
 body {
-    background: beige;
-    font-family: "Open Sans", sans-serif;
+    background: #120912;
+    color: white;
+    font-family: "Open Sans", "Roboto", sans-serif;
 }
 
-h1 {
-    color: darkgreen;
+h1, h3, h4 {
+    color: #1d9bc4;
     text-align: center;
 }
 
-h2 {
-    color: darkgreen;
-    text-align: center;
-}
 
-h3 {
-    color: darkgreen;
-    text-align: center;
+a {
+    color: #e55010;
 }
 
 p {
-    text-align: justify;
+    text-align: center;
+}
+
+.intro {
+    box-sizing: content-box;
+    position: relative;
 }
 
 .header {
-    color: darkgreen;
+    color: #1d9bc4;
+    position: sticky;
     text-align: center;
-    height: 100px;
+    top: 7px;
+    height: fit-content;
+    background: #12627e;
 }
 
-.ownerOptions, .agencyOptions, .propertyOptions {
-    display: flex;
+.description {
+    width: 50%;
+    height: 50%;
+    inset: 0;
+    margin: auto;
 }
 
-.entity-principal {
-    align-self: center;
+.agency-principal {
+    height: 100vh;
+    background-size: cover;
+    background-image: url("/static/images/Agencies.png") !important;
+}
+
+.owner-principal {
+    height: 100vh;
+    background-size: cover;
+    background-image: url("/static/images/Owners.jpg");
+}
+
+.property-principal {
+    height: 100vh;
+    background-size: cover;
+    background-image: url("/static/images/Properties.jpg");
 }
 
 .entity-button:hover {
-    background-color: yellowgreen;
+    background-color: #f28985;
+}
+
+.entity-button:active {
+    outline: 2px solid #e55010;
 }
 
