@@ -3,29 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Owners List</title>
+    <title>Agency details</title>
 
     <link rel="icon" type="image/png" href="/images/CIP_Icon.png">
 </head>
 <body>
+{{#agency}}
+    <h1>{{agency.id}}</h1>
 
-    <h1>Owners List</h1>
-
-    <ul>
-        {{#owners}}
-            <li>
-                <strong>Name:</strong><a href="/owner/{{id}}">{{name}}</a><br>
-                <strong>Last name:</strong> {{lastName}}<br>
-                <strong>Phone number:</strong> {{phoneNumber}}<br>
-                <strong>Email:</strong> {{email}}<br>
-            </li>
-        {{/owners}}
-        <br><br>
-        <button onclick="window.location.href='/create-owner.html'" class="option">
-            Create Owner
-        </button>
-        <br><br>
-        <a href="/" >back to principal page</a>
-    </ul>
+    <datalist>
+        <strong>Name:</strong> {{agency.name}}<br>
+        <strong>Phone:</strong> {{agency.phone}}<br>
+        <strong>Email:</strong> {{agency.email}}<br>
+    </datalist>
+{{/agency}}
+<br>
+<form action="/agency/deleteAgency/{{agency.id}}" method="post">
+    <button type="submit">Delete Agency</button>
+</form>
+<button onclick="window.location.href='/agency/modify/{{agency.id}}'">
+    Modify Agency
+</button>
+<br><br>
+<a href="/agency">Agency List</a>
 </body>
 </html>
