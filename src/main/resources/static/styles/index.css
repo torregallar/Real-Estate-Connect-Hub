@@ -5,6 +5,7 @@
 
 body {
     background: #120912;
+    z-index: 0;
     color: white;
     font-family: "Open Sans", "Roboto", sans-serif;
 }
@@ -47,19 +48,19 @@ p {
 .agency-principal {
     height: 100vh;
     background-size: cover;
-    background-image: url("/static/images/Agencies.png") !important;
+    background-image: url("../images/Agencies.png");
 }
 
 .owner-principal {
     height: 100vh;
     background-size: cover;
-    background-image: url("/static/images/Owners.jpg");
+    background-image: url("../images/Owners.jpg");
 }
 
 .property-principal {
     height: 100vh;
     background-size: cover;
-    background-image: url("/static/images/Properties.jpg");
+    background-image: url("../images/Properties.jpg");
 }
 
 .entity-button:hover {
