@@ -12,45 +12,45 @@
 </head>
 <body class="font-mono">
     <main class="snap-y snap-proximity relative w-full h-screen overflow-auto"> <!-- tailwind -->
-        <div class="snap-center">
-            <section>
-                <header class="header">
-                    <h1>Inmobiliaria CIP</h1>
-                    <small class = "creators-footer">
+        <div class="snap-center flex justify-center">
+            <section class="relative">
+                <header class="sticky text-center text-black top-1.5 inset-0 mx-auto py-4 px-6 bg-blue-100 max-w-screen-sm rounded-lg">
+                    <h1 class="text-4xl">Inmobiliaria CIP</h1>
+                    <small class = "text-xs">
                         Carlos Bolívar Álvarez - Patricia Landa Stokman - Iván Torregrosa Mateo <!-- Creators -->
                     </small>
                 </header>
 
-                <article class="description">
-                    <h3>Our Philosophy</h3>
-                    <p class="description-text">
+                <article class="description block max-w-screen-md mt-3 text-black text-base text-center ">
+                    <h2 class="text-2xl border-2 rounded-lg bg-blue-100 bg-opacity-25">Our Philosophy</h2>
+                    <p>
                         Welcome to Inmobiliaria CIP, dedicated to fostering peace and harmony in real estate
                         for both property owners and tenants alike.
-                    </p>
-                    <p class="description-text">
+                    </p><br>
+                    <p>
                         In today's fast-paced world, finding a tranquil and harmonious living space is more important than ever.
                         At Inmobiliaria CIP, we understand the significance of creating a space that serves as havens of
                         tranquility amidst the chaos of everyday life.
-                    </p>
-                    <p class="description-text">
+                    </p><br>
+                    <p>
                         Our mission is to ensure that <a href="#agencies"> real estate agencies</a>,
                         <a href="#owners">property owners</a>, and tenants have access to the resources and
                         support they need to cultivate a sense of peace
                         and harmony in their homes. Whether you're a real estate agency striving to create
                         serene living environments, a homeowner looking to sell your <a href="#properties">awesome properties</a>,
                         or a tenant seeking a cozy dwelling, we're here to help.
-                    </p>
-                    <p class="description-text">
+                    </p><br>
+                    <p>
                         Join us in our mission to create a world where every home is a place of refuge and every community is a
                         beacon of harmony. Together, let's build a brighter future where peace and
                         serenity are cherished values in real estate.
-                    </p>
+                    </p><br>
                 </article>
             </section>
         </div>
         <div class="snap-center">
-            <section class="agency-principal" id="agencies">
-                <h3 class="entity-header">Agencies</h3>
+            <section class="agency-principal flex flex-col items-center justify-center h-screen" id="agencies">
+                <h2 class="text-2xl border-2 rounded-lg bg-blue-100 bg-opacity-25">Agencies</h2>
                 <button onclick="window.location.href='/agencies'" class="entity-button">
                     Real Estate Agencies
                 </button>
@@ -60,8 +60,8 @@
             </section>
         </div>
         <div class="snap-center">
-            <section class="owner-principal" id="owners">
-                <h3 class="entity-header">Owners</h3>
+            <section class="owner-principal flex flex-col items-center justify-center h-screen" id="owners">
+                <h2 class="text-2xl border-2 rounded-lg bg-blue-100 bg-opacity-25">Owners</h2>
                 <button id="owners-button" onclick="window.location.href='/owners'" class="entity-button">
                     Owners
                 </button>
@@ -71,12 +71,12 @@
             </section>
         </div>
         <div class="snap-center">
-            <section class="property-principal" id="properties">
-                <h3 class="entity-header">Properties</h3>
+            <section class="property-principal flex flex-col items-center justify-center h-screen" id="properties">
+                <h2 class="text-2xl border-2 rounded-lg bg-blue-100 bg-opacity-25 inset-0 mx-auto px-4">Properties</h2>
                 <button onclick="window.location.href='/properties'" class="entity-button">
                     Properties
                 </button>
-                <button onclick="window.location.href='/create-property.html'" class="entity-button">
+                <button onclick="window.location.href='/create-property.html'" class="hover:">
                     Create Property
                 </button>
             </section>
