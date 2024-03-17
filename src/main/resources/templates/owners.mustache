@@ -14,7 +14,7 @@
         <div class="block inset-0 mx-auto border-2 px-4 py-8 bg-white shadow-lg rounded-lg h-3/5 w-3/5 overflow-auto">
             {{#owners}}
                 <ul class="text-black">
-                    <li class="rounded-lg bg-blue-100 mb-2 hover:bg-blue-300 transition-all duration-300" id="agency_{{id}}">
+                    <li class="rounded-lg bg-blue-100 mb-2 hover:bg-blue-300 transition-all duration-300" id="owner_{{id}}">
                         <a class="bold text-3xl">{{name}} {{lastName}}</a><br>
                         <strong>Phone number:</strong> {{phoneNumber}}<br>
                         <strong>Email:</strong> {{email}}<br>
@@ -49,7 +49,7 @@
 
                     id = id.replace('owner_', '');
 
-                    window.location.href = '/owners/' + id;
+                    window.location.href = '/owner/' + id;
                 });
             });
         });
