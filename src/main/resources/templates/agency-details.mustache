@@ -8,11 +8,10 @@
     <link rel="icon" type="image/png" href="/images/CIP_Icon.png">
 </head>
 <body>
-{{#agency}}
-    <h1>{{agency.id}}</h1>
 
+    <h1>{{agency.name}}</h1>
+    {{#agency}}
     <datalist>
-        <strong>Name:</strong> {{agency.name}}<br>
         <strong>Phone:</strong> {{agency.phone}}<br>
         <strong>Email:</strong> {{agency.email}}<br>
     </datalist>
@@ -25,6 +24,6 @@
     Modify Agency
 </button>
 <br><br>
-<a href="/agency">Agency List</a>
+<a href="/agencies">Agency List</a>
 </body>
 </html>
