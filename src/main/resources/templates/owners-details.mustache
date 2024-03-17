@@ -8,9 +8,9 @@
     <link rel="icon" type="image/png" href="/images/CIP_Icon.png">
 </head>
 <body>
-
-<h1>{{owner.name}} {{owner.lastName}}</h1>
     {{#owner}}
+        <h1>{{owner.name}} {{owner.lastName}}</h1>
+    
         <datalist>
             <strong>Phone number:</strong> {{owner.phoneNumber}}<br>
             <strong>Email:</strong> {{owner.email}}<br>
