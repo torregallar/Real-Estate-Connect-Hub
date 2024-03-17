@@ -13,14 +13,14 @@
     <div class="flex justify-center">
         <h1 class="text-4xl text-black font-bold text-center mt-10 border-2 border-white inline-block py-1 px-1 bg-white bg-opacity-25">Create Property</h1>
     </div>
-    <div class ="h-screen">
+    <div class ="h-screen justify-center items-center">
         <form action="//properties/createPropertyy" method="post">
             <fieldset>
                 <div class="flex justify-center">
                     <h2 class ="text-2xl text-black font-bold text justify-center mt-20 border-2 border-white inline-block py-1 px-1 bg-white bg-opacity-25">Property details</h2>
                 </div>
                 <div class="flex justify-center">
-                    <section class="border-2 border-black mt-5 py-2 px-2 max-w-screen-md bg-white rounded">
+                    <section class="border-2 border-black mt-5 py-4 px-4 max-w-screen-md bg-white rounded w-4/5">
                         <label for="name" class ="font-bold">Name:</label>
                         <input type="text" id="name" name="name" value="" class = "border border-black" required>
                         <br><br>
@@ -46,13 +46,13 @@
                         <input type="text" id="description" name="description" value="" class = "border border-black" required>
                         <br><br>
                         <div class="flex justify-center">
-                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Create Property</button>
+                            <button type="submit" class="text-black font-bold bg-blue-300 bg-opacity-50 hover:bg-opacity-100 px-2 py-2 rounded border border-black">Create Property</button>
                         </div>
                         <br>
                     </section>
                 </div>
                 <div class="flex justify-center">
-                    <a href="/properties" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-20">Propertiers List</a>
+                    <a href="/properties" class="text-black font-bold bg-white bg-opacity-50 hover:bg-opacity-100 py-2 px-4 rounded mt-8 border border-white">Properties List</a>
                 </div>
             </fieldset>
         </form>
