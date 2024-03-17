@@ -5,27 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Owners List</title>
 
-    <link rel="icon" type="image/png" href="/images/CIP_Icon.png">
+    <link rel="icon" type="image/png" href="../static/images/CIP_Icon.png">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="font-mono">
+    <main class="flex flex-col h-screen text-center text-white bg-blue-200 justify-center items-center">
+        <h1 class="text-black mb-3 text-4xl bold">Owners List</h1>
+        <div class="block inset-0 mx-auto border-2 px-4 py-8 bg-white shadow-lg rounded-lg h-3/5 w-3/5 overflow-auto">
+            {{#owners}}
+                <ul class="text-black">
+                    <li class="rounded-lg bg-blue-100 mb-2 hover:bg-blue-300 transition-all duration-300" id="agency_{{id}}">
+                        <a class="bold text-3xl">{{name}} {{lastName}}</a><br>
+                        <strong>Phone number:</strong> {{phoneNumber}}<br>
+                        <strong>Email:</strong> {{email}}<br>
+                    </li>
+                </ul>
+            {{/owners}}
+            {{^owners}}
+                <div class="h-full flex items-center justify-center">
+                    <p class="text-3xl text-red-700 bold border-2 border-red-600 bg-red-600 bg-opacity-25 rounded-lg">NO OWNERS FOUND</p>
+                </div>
+            {{/owners}}
+        </div>
+        <div class="mt-2 flex flex-row">
+            <button onclick="window.location.href='/create-owner.html'" class="ml-2 bg-white bg-opacity-50 hover:bg-opacity-100 font-bold text-black py-2 px-3 rounded">
+                Create Owner
+            </button>
+            <button onclick="window.location.href='/'" class="ml-2 bg-white bg-opacity-50 hover:bg-opacity-100 font-bold text-black py-2 px-3 rounded">
+                Back to principal page
+            </button>
+        </div>
+    </main>
 
-    <h1>Owners List</h1>
-    {{#owners}}
-    <ul>
-        <li>
-            <strong>Name:</strong><a href="/owner/{{id}}">{{name}}</a><br>
-            <strong>Last name:</strong> {{lastName}}<br>
-            <strong>Phone number:</strong> {{phoneNumber}}<br>
-            <strong>Email:</strong> {{email}}<br>
-        </li>
-    </ul>
-    {{/owners}}
-    <br><br>
-    <button onclick="window.location.href='/create-owner.html'" class="option">
-        Create Owner
-    </button>
-    <br><br>
-    <a href="/">Back to principal page</a>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            var ownerList = document.querySelectorAll('[id^="owner_"]');
+
+            ownerList.forEach(function(owner) {
+                owner.addEventListener('click', function() {
+
+                    var id = owner.id;
+
+                    id = id.replace('owner_', '');
+
+                    window.location.href = '/owners/' + id;
+                });
+            });
+        });
+    </script>
 
 </body>
 </html>
