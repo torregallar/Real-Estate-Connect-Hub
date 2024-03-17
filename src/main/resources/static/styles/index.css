@@ -3,7 +3,7 @@
 @import "tailwindcss/utilities";
 
 a {
-    color: #e55010;
+    color: sandybrown;
 }
 
 .agency-principal {
@@ -19,4 +19,8 @@ a {
 .property-principal {
     background-size: cover;
     background-image: url("../images/Properties.jpg");
+}
+
+.background-browm {
+    background-color: #dcb08e;
 }
