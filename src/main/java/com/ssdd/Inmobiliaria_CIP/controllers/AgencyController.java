@@ -29,19 +29,19 @@ public class AgencyController {
             model.addAttribute("agency", agency);
             return "agency-details";
         }
-        return "redirect:/agency";
+        return "redirect:/agencies";
     }
 
     @PostMapping("/agencies/createAgency")
     public String createProperty (Agency agency) {
         AgencyService.createAgency(agency);
-        return "redirect:/agency";
+        return "redirect:/agencies";
     }
 
     @GetMapping("/agency/deleteAgency/{id}")
     public String deleteAgency(@PathVariable int id) {
         AgencyService.deleteAgency(id);
-        return "redirect:/agency";
+        return "redirect:/agencies";
     }
 
     @GetMapping("/agency/modify/{id}")
