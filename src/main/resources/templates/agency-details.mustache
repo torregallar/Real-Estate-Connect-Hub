@@ -11,13 +11,13 @@
 
     <h1>{{agency.name}}</h1>
     {{#agency}}
-    <datalist>
-        <strong>Phone:</strong> {{agency.phone}}<br>
-        <strong>Email:</strong> {{agency.email}}<br>
-    </datalist>
-{{/agency}}
+        <list>
+            <strong>Phone:</strong> {{agency.phone}}<br>
+            <strong>Email:</strong> {{agency.email}}<br>
+        </list>
+    {{/agency}}
 <br>
-<form action="/agency/deleteAgency/{{agency.id}}" method="post">
+<form action="/agency/deleteAgency/{{agency.id}}" method="get">
     <button type="submit">Delete Agency</button>
 </form>
 <button onclick="window.location.href='/agency/modify/{{agency.id}}'">

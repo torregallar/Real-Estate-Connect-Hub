@@ -53,7 +53,7 @@ public class AgencyService {
         Agency agencyToUpdate = agencies.get(id);
         if (agencyToUpdate != null) {
             fields.forEach((name, value)-> {
-                Field field = ReflectionUtils.findField(Property.class, name);
+                Field field = ReflectionUtils.findField(Agency.class, name);
                 field.setAccessible(true);
                 ReflectionUtils.setField(field, agencyToUpdate, value);
             });

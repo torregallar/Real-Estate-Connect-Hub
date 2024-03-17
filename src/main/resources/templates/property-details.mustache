@@ -10,8 +10,7 @@
 <body>
     {{#property}}
         <h1>{{property.name}}</h1>
-
-            <datalist>
+            <list>
                 <strong>Price:</strong> {{property.price}}<br>
                 <strong>Type:</strong> {{property.type}}<br>
                 <strong>Rooms:</strong> {{property.rooms}}<br>
@@ -19,10 +18,10 @@
                 <strong>Surface:</strong> {{property.sqMetres}}<br>
                 <strong>Address:</strong> {{property.address}}<br>
                 <strong>Description:</strong> {{property.description}}<br>
-            </datalist>
+            </list>
     {{/property}}
     <br>
-    <form action="/property/deleteProperty/{{property.id}}" method="post">
+    <form action="/property/deleteProperty/{{property.id}}" method="get">
         <button type="submit">Delete property</button>
     </form>
     <button onclick="window.location.href='/property/modify/{{property.id}}'">
