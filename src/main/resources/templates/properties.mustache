@@ -9,21 +9,21 @@
 </head>
 <body>
     <h1>Property List</h1>
+    {{#properties}}
+        <ul>
+            <li>
+                    <strong>Name:</strong><a href="/property/{{id}}">{{name}}</a><br>
+                    <strong>Price:</strong> {{price}}<br>
+                    <strong>Type:</strong> {{type}}<br>
+                    <strong>Rooms:</strong> {{rooms}}<br>
+                    <strong>Bathrooms:</strong> {{bathrooms}}<br>
+                    <strong>Surface:</strong> {{sqMetres}}<br>
+                    <strong>Address:</strong> {{address}}<br>
+                    <strong>Description:</strong> {{description}}<br>
 
-    <ul>
-        <li>
-            {{#properties}}
-                <strong>Name:</strong><a href="/property/{{id}}">{{name}}</a><br>
-                <strong>Price:</strong> {{price}}<br>
-                <strong>Type:</strong> {{type}}<br>
-                <strong>Rooms:</strong> {{rooms}}<br>
-                <strong>Bathrooms:</strong> {{bathrooms}}<br>
-                <strong>Surface:</strong> {{sqMetres}}<br>
-                <strong>Address:</strong> {{address}}<br>
-                <strong>Description:</strong> {{description}}<br>
-            {{/properties}}
-        </li>
-    </ul>
+            </li>
+        </ul>
+    {{/properties}}
     <br><br>
 
     <button onclick="window.location.href='/create-property.html'" class="option">

@@ -62,8 +62,8 @@ public class AgencyRestController {
         return ResponseEntity.notFound().build();
     }
 
-    @PatchMapping("{id}")
-    public ResponseEntity<Agency> updateAgencyFields(@PathVariable int id, Map<String, Object> fields) {
+    @PatchMapping("/{id}")
+    public ResponseEntity<Agency> updateAgencyFields(@PathVariable int id, @RequestBody Map<String, Object> fields) {
         Agency updatedAgency = agencyService.updateAgencyFields(id, fields);
         if (updatedAgency != null) {
             return ResponseEntity.ok(updatedAgency);

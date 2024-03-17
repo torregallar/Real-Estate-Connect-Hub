@@ -8,16 +8,16 @@
     <link rel="icon" type="image/png" href="/images/CIP_Icon.png">
 </head>
 <body>
-
-<h1>{{owner.name}} {{owner.lastName}}</h1>
     {{#owner}}
-        <datalist>
+        <h1>{{owner.name}} {{owner.lastName}}</h1>
+
+        <list>
             <strong>Phone number:</strong> {{owner.phoneNumber}}<br>
             <strong>Email:</strong> {{owner.email}}<br>
-        </datalist>
+        </list>
     {{/owner}}
     <br>
-    <form action="/owner/deleteOwner/{{owner.id}}" method="post">
+    <form action="/owner/deleteOwner/{{owner.id}}" method="get">
         <button type="submit">Delete owner</button>
     </form>
     <button onclick="window.location.href='/owner/modify/{{owner.id}}'">

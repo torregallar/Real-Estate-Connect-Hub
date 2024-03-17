@@ -59,7 +59,7 @@ public class OwnerRestController {
         return ResponseEntity.notFound().build();
     }
 
-    @PatchMapping("{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<Owner> updateOwnerFields(@PathVariable int id, @RequestBody Map<String, Object> fields) {
         Owner updatedOwner = ownerService.updateOwnerFields(id, fields);
         if (updatedOwner != null) {
