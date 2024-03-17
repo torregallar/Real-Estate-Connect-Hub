@@ -3,34 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create owner</title>
-
+    <title>Create agency</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="/images/CIP_Icon.png">
 </head>
-<body>
 
-    <h1>Create Owner</h1>
-
-    <form action="/owners/createOwner" method="post">
-        <fieldset>
-            <h2>Owner details</h2>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" value="" required>
-            <br><br>
-            <label for="lastName">Last name:</label>
-            <input type="text" id="lastName" name="lastName" value="" required>
-            <br><br>
-            <label for="phoneNumber">Phone number:</label>
-            <input type="tel" id="phoneNumber" name="phoneNumber" value="" required>
-            <br><br>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" value="" required>
-            <br>
-        </fieldset>
-
-        <button type="submit">Create Owner</button>
-        <br>
-    </form>
-    <a href="/owners">Owner list</a>
+<body class="font-mono bg-blue-100">
+<main class="font-mono relative w-full h-screen">
+    <div class="flex justify-center">
+        <h1 class="text-4xl text-black font-bold text-center mt-10 border-2 border-white inline-block py-1 px-1 bg-white bg-opacity-25">Create Owner</h1>
+    </div>
+    <div class ="h-screen">
+        <form action="/owners/createOwner" method="post">
+            <fieldset>
+                <div class="flex justify-center">
+                    <h2 class ="text-2xl text-black font-bold text mt-20 border-2 border-white inline-block py-1 px-1 bg-white bg-opacity-25">Owner details</h2>
+                </div>
+                <div class="flex justify-center">
+                    <section class="border-2 border-black mt-5 py-2 px-2 max-w-screen-md bg-white rounded">
+                        <label for="name" class ="font-bold">Name:</label>
+                        <input type="text" id="name" name="name" value="" class = "border border-black" required>
+                        <br><br>
+                        <label for="lastName" class ="font-bold">Last name:</label>
+                        <input type="text" id="lastName" name="lastName" value="" class = "border border-black" required>
+                        <br><br>
+                        <label for="phone" class ="font-bold">Phone number:</label>
+                        <input type="tel" id="phone" name="phone" value="" class = "border border-black" required>
+                        <br><br>
+                        <label for="email" class ="font-bold">Email:</label>
+                        <input type="email" id="email" name="email" value="" class = "border border-black" required>
+                        <br><br>
+                        <div class="flex justify-center">
+                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Create Property</button>
+                        </div>
+                        <br>
+                    </section>
+                </div>
+                <div class="flex justify-center">
+                    <a href="/owners" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-20">Owners list</a>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</main>
 </body>
-</html>
