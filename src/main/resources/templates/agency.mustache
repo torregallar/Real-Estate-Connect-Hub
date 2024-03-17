@@ -5,26 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agency List</title>
 
-    <link rel="icon" type="image/png" href="/images/CIP_Icon.png">
+    <link rel="icon" type="image/png" href="../static/images/CIP_Icon.png">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-<h1>Agency List</h1>
-    {{#agencies}}
-        <ul>
-            <li>
-                <strong>Name:</strong><a href="/agency/{{id}}">{{name}}</a><br>
-                <strong>Name:</strong> {{name}}<br>
-                <strong>Phone:</strong> {{phone}}<br>
-                <strong>Email:</strong> {{email}}<br>
-            </li>
-        </ul>
-    {{/agencies}}
-        <br><br>
-        <button onclick="window.location.href='/create-agency.html'" class="option">
-            Create Agency
-        </button>
-        <br><br>
-        <a href="/">Back to principal page</a>
+<body class="font-mono">
+    <main class="flex flex-col h-screen text-center text-white bg-blue-200 justify-center items-center">
+        <h1 class="text-black mb-3 text-4xl bold">Agencies List</h1>
+        <div class="block inset-0 mx-auto border-2 px-4 py-8 bg-white shadow-lg rounded-lg h-3/5 w-3/5 overflow-auto">
+            {{#agencies}}
+                <ul class="text-black">
+                    <li class="rounded-lg bg-blue-100 mb-2 hover:bg-blue-300 transition-all duration-300" id="agency_{{id}}">
+                        <a class="bold text-3xl">{{name}}</a><br>
+                        <strong>Phone:</strong> {{phone}}<br>
+                        <strong>Email:</strong> {{email}}<br>
+                    </li>
+                </ul>
+            {{/agencies}}
+            {{^agencies}}
+                <div class="h-full flex items-center justify-center">
+                    <p class="text-3xl text-red-700 bold border-2 border-red-600 bg-red-600 bg-opacity-25 rounded-lg">NO AGENCIES FOUND</p>
+                </div>
+            {{/agencies}}
 
+        </div>
+        <div class="mt-2 flex flex-row">
+            <button onclick="window.location.href='/create-agency.html'" class="ml-2 bg-white bg-opacity-50 hover:bg-opacity-100 font-bold text-black py-2 px-3 rounded">
+                Create Agency
+            </button>
+            <br><br>
+            <button onclick="window.location.href='/'" class="ml-2 bg-white bg-opacity-50 hover:bg-opacity-100 font-bold text-black py-2 px-3 rounded">
+                Back to principal page
+            </button>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            var agencyList = document.querySelectorAll('[id^="agency_"]');
+
+            agencyList.forEach(function(agency) {
+                agency.addEventListener('click', function() {
+
+                    var id = agency.id;
+
+                    id = id.replace('agency_', '');
+
+                    window.location.href = '/agency/' + id;
+                });
+            });
+        });
+    </script>
 </body>
 </html>
