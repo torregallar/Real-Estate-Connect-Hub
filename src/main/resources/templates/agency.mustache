@@ -10,22 +10,21 @@
 <body>
 <h1>Agency List</h1>
 
-<ul>
-    <li>
+    <ul>
         {{#agencies}}
-            <strong>Id:</strong><a href="/agency/{{id}}">{{id}}</a><br>
-            <strong>Name:</strong> {{name}}<br>
-            <strong>Phone:</strong> {{phone}}<br>
-            <strong>Email:</strong> {{email}}<br>
+            <li>
+                <strong>Name:</strong><a href="/agency/{{id}}">{{name}}</a><br>
+                <strong>Name:</strong> {{name}}<br>
+                <strong>Phone:</strong> {{phone}}<br>
+                <strong>Email:</strong> {{email}}<br>
+            </li>
         {{/agencies}}
-    </li>
-</ul>
-<br><br>
-
-<button onclick="window.location.href='/create-agency.html'" class="option">
-    Create Agency
-</button>
-<br><br>
-<a href="/">Back to principal page</a>
+        <br><br>
+        <button onclick="window.location.href='/create-agency.html'" class="option">
+            Create Agency
+        </button>
+        <br><br>
+        <a href="/">Back to principal page</a>
+    </ul>
 </body>
 </html>
