@@ -3,29 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Owners List</title>
+    <title>Agency List</title>
 
     <link rel="icon" type="image/png" href="/images/CIP_Icon.png">
 </head>
 <body>
+<h1>Agency List</h1>
 
-    <h1>Owners List</h1>
+<ul>
+    <li>
+        {{#agencies}}
+            <strong>Id:</strong><a href="/agency/{{id}}">{{id}}</a><br>
+            <strong>Name:</strong> {{name}}<br>
+            <strong>Phone:</strong> {{phone}}<br>
+            <strong>Email:</strong> {{email}}<br>
+        {{/agencies}}
+    </li>
+</ul>
+<br><br>
 
-    <ul>
-        {{#owners}}
-            <li>
-                <strong>Name:</strong><a href="/owner/{{id}}">{{name}}</a><br>
-                <strong>Last name:</strong> {{lastName}}<br>
-                <strong>Phone number:</strong> {{phoneNumber}}<br>
-                <strong>Email:</strong> {{email}}<br>
-            </li>
-        {{/owners}}
-        <br><br>
-        <button onclick="window.location.href='/create-owner.html'" class="option">
-            Create Owner
-        </button>
-        <br><br>
-        <a href="/" >back to principal page</a>
-    </ul>
+<button onclick="window.location.href='/create-agency.html'" class="option">
+    Create Agency
+</button>
+<br><br>
+<a href="/">Back to principal page</a>
 </body>
 </html>

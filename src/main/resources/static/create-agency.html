@@ -1,10 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create agency</title>
+
+    <link rel="icon" type="image/png" href="/images/CIP_Icon.png">
 </head>
 <body>
-$END$
+<h1>Create agency</h1>
+<form action="/agencies/createAgency" method="post">
+    <fieldset>
+
+        <h2>Agency details</h2>
+
+        <label for="id">Name:</label>
+        <input type="number" id="id" name="id" value="" required>
+        <br><br>
+        <label for="name">Price:</label>
+        <input type="text" id="name" name="name" value="" required>
+        <br><br>
+        <label for="phone">Type:</label>
+        <input type="number" id="phone" name="phone" value="" required>
+        <br><br>
+        <label for="email">Rooms:</label>
+        <input type="text" id="email" name="email" value="" required>
+        <br><br>
+        <button type="submit">Create Agency</button>
+        <br>
+    </fieldset>
+</form>
+<a href="/agencies">Agency list</a>
 </body>
 </html>
