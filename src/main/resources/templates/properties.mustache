@@ -5,14 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Property List</title>
 
-    <link rel="icon" type="image/png" href="/images/CIP_Icon.png">
+    <link rel="icon" type="image/png" href="../static/images/CIP_Icon.png">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <h1>Property List</h1>
-    {{#properties}}
-        <ul>
-            <li>
-                    <strong>Name:</strong><a href="/property/{{id}}">{{name}}</a><br>
+<body class="font-mono">
+    <main class="flex flex-col h-screen text-center text-white bg-blue-200 justify-center items-center">
+        <h1 class="text-black mb-3 text-4xl bold">Property List</h1>
+        <div class="block inset-0 mx-auto border-2 px-4 py-8 bg-white shadow-lg rounded-lg h-3/5 w-3/5 overflow-auto">
+        {{#properties}}
+            <ul class="text-black">
+                <li class="rounded-lg bg-blue-100 mb-2 hover:bg-blue-300 transition-all duration-300" id="property_{{id}}">
+                    <strong class="text-3xl">{{name}}</strong><br>
                     <strong>Price:</strong> {{price}}<br>
                     <strong>Type:</strong> {{type}}<br>
                     <strong>Rooms:</strong> {{rooms}}<br>
@@ -20,16 +23,42 @@
                     <strong>Surface:</strong> {{sqMetres}}<br>
                     <strong>Address:</strong> {{address}}<br>
                     <strong>Description:</strong> {{description}}<br>
+                </li>
+            </ul>
+        {{/properties}}
+        {{^properties}}
+            <div class="h-full flex items-center justify-center">
+                <p class="text-3xl text-red-700 bold border-2 border-red-600 bg-red-600 bg-opacity-25 rounded-lg">NO PROPERTIES FOUND</p>
+            </div>
+        {{/properties}}
+        </div>
 
-            </li>
-        </ul>
-    {{/properties}}
-    <br><br>
+        <div class="mt-2 flex flex-row">
+            <button onclick="window.location.href='/create-property.html'" class="ml-2 bg-white bg-opacity-50 hover:bg-opacity-100 font-bold text-black py-2 px-3 rounded">
+                Create Property
+            </button>
+            <button onclick="window.location.href='/'" class="ml-2 bg-white bg-opacity-50 hover:bg-opacity-100 font-bold text-black py-2 px-3 rounded">
+                Back to principal page
+            </button>
+        </div>
+    </main>
 
-    <button onclick="window.location.href='/create-property.html'" class="option">
-        Create Property
-    </button>
-    <br><br>
-    <a href="/">Back to principal page</a>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            var propertyList = document.querySelectorAll('[id^="property_"]');
+
+            propertyList.forEach(function(property) {
+                property.addEventListener('click', function() {
+
+                    var id = property.id;
+
+                    id = id.replace('property_', '');
+
+                    window.location.href = '/property/' + id;
+                });
+            });
+        });
+    </script>
 </body>
 </html>
