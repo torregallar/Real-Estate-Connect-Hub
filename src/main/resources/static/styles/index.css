@@ -2,72 +2,21 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-
-body {
-    background: #120912;
-    z-index: 0;
-    color: white;
-    font-family: "Bilbo", serif;
-}
-
-h1, h3, h4 {
-    color: #1d9bc4;
-    text-align: center;
-}
-
-
 a {
     color: #e55010;
 }
 
-p {
-    text-align: center;
-}
-
-.intro {
-    box-sizing: content-box;
-    position: relative;
-}
-
-.header {
-    color: #1d9bc4;
-    position: sticky;
-    text-align: center;
-    top: 7px;
-    height: fit-content;
-    background: #12627e;
-}
-
-.description {
-    width: 50%;
-    height: 50%;
-    inset: 0;
-    margin: auto;
-}
-
 .agency-principal {
-    height: 100vh;
     background-size: cover;
     background-image: url("../images/Agencies.png");
 }
 
 .owner-principal {
-    height: 100vh;
     background-size: cover;
     background-image: url("../images/Owners.jpg");
 }
 
 .property-principal {
-    height: 100vh;
     background-size: cover;
     background-image: url("../images/Properties.jpg");
 }
-
-.entity-button:hover {
-    background-color: #f28985;
-}
-
-.entity-button:active {
-    outline: 2px solid #e55010;
-}
-
