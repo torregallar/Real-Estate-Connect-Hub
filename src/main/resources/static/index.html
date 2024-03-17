@@ -10,18 +10,19 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="/images/CIP_Icon.png">
 </head>
-<body class="font-mono">
-    <main class="snap-y snap-proximity relative w-full h-screen overflow-auto"> <!-- tailwind -->
-        <div class="snap-center flex justify-center">
-            <section class="relative">
-                <header class="sticky text-center text-black top-1.5 inset-0 mx-auto py-4 px-6 bg-blue-100 max-w-screen-sm rounded-lg">
-                    <h1 class="text-4xl">Inmobiliaria CIP</h1>
-                    <small class = "text-xs">
-                        Carlos Bolívar Álvarez - Patricia Landa Stokman - Iván Torregrosa Mateo <!-- Creators -->
-                    </small>
-                </header>
 
-                <article class="description block max-w-screen-md mt-3 text-black text-base text-center ">
+<body class="font-mono">
+
+    <main class="font-mono relative w-full h-screen">
+        <div class="h-screen background-browm">
+            <header class="sticky text-center text-black top-1.5 inset-0 mx-auto py-4 px-6 bg-blue-100 z-50 max-w-screen-sm rounded-lg">
+                <h1 class="text-4xl">Inmobiliaria CIP</h1>
+                <small class = "text-xs">
+                    Carlos Bolívar Álvarez - Patricia Landa Stokman - Iván Torregrosa Mateo <!--Creators-->
+                </small>
+            </header>
+            <section class="relative flex justify-center">
+                <article class="description block shadow-lg shadow-black max-w-screen-md mt-3 text-black text-base text-center border-2 border-black rounded-lg bg-yellow-100">
                     <h2 class="text-2xl border-2 rounded-lg bg-blue-100 bg-opacity-25">Our Philosophy</h2>
                     <p>
                         Welcome to Inmobiliaria CIP, dedicated to fostering peace and harmony in real estate
@@ -45,40 +46,47 @@
                         beacon of harmony. Together, let's build a brighter future where peace and
                         serenity are cherished values in real estate.
                     </p><br>
+                    <img src="/static/images/Intro_Icon.jpeg" class="w-32 h-32 inset-0 mx-auto rounded-lg" alt="Page Icon">
                 </article>
             </section>
         </div>
-        <div class="snap-center">
+        <div>
             <section class="agency-principal flex flex-col items-center justify-center h-screen" id="agencies">
-                <h2 class="text-2xl border-2 rounded-lg bg-blue-100 bg-opacity-25">Agencies</h2>
-                <button onclick="window.location.href='/agencies'" class="entity-button">
-                    Real Estate Agencies
-                </button>
-                <button onclick="window.location.href='/create-agency.html'" class="entity-button">
-                    Create Real Estate Agency
-                </button>
+                <div class="block max-w-screen-md border-2 rounded-lg p-20 bg-white bg-opacity-25 text-center justify-center">
+                    <h2 class="text-4xl border rounded-lg bg-blue-100 bg-opacity-25 mb-10">Agencies</h2>
+                    <button onclick="window.location.href='/agencies'" class="justify-start bg-white bg-opacity-50 hover:bg-opacity-100 font-bold text-black py-2 px-3 rounded">
+                        Agencies List
+                    </button>
+                    <button onclick="window.location.href='/create-agency.html'" class="justify-end ml-2 bg-white bg-opacity-50 hover:bg-opacity-100 font-bold text-black py-2 px-3 rounded">
+                        Create Agency
+                    </button>
+                </div>
             </section>
         </div>
-        <div class="snap-center">
+        <div>
             <section class="owner-principal flex flex-col items-center justify-center h-screen" id="owners">
-                <h2 class="text-2xl border-2 rounded-lg bg-blue-100 bg-opacity-25">Owners</h2>
-                <button id="owners-button" onclick="window.location.href='/owners'" class="entity-button">
-                    Owners
-                </button>
-                <button onclick="window.location.href='/create-owner.html'" class="entity-button">
-                    Create Owner
-                </button>
+                <div class="block max-w-screen-md border-2 rounded-lg p-20 bg-white bg-opacity-25 text-center justify-center">
+                    <h2 class="text-4xl border rounded-lg bg-blue-100 bg-opacity-25 mb-10">Owners</h2>
+                    <button onclick="window.location.href='/owners'" class="justify-start bg-white bg-opacity-50 hover:bg-opacity-100 font-bold text-black py-2 px-3 rounded">
+                        Owners List
+                    </button>
+                    <button onclick="window.location.href='/create-owner.html'" class="justify-end ml-2 bg-white bg-opacity-50 hover:bg-opacity-100 font-bold text-black py-2 px-3 rounded">
+                        Create Owner
+                    </button>
+                </div>
             </section>
         </div>
-        <div class="snap-center">
+        <div>
             <section class="property-principal flex flex-col items-center justify-center h-screen" id="properties">
-                <h2 class="text-2xl border-2 rounded-lg bg-blue-100 bg-opacity-25 inset-0 mx-auto px-4">Properties</h2>
-                <button onclick="window.location.href='/properties'" class="entity-button">
-                    Properties
-                </button>
-                <button onclick="window.location.href='/create-property.html'" class="hover:">
-                    Create Property
-                </button>
+                <div class="block max-w-screen-md border-2 rounded-lg p-20 bg-white bg-opacity-25 text-center justify-center">
+                    <h2 class="text-4xl border rounded-lg bg-blue-100 bg-opacity-25 mb-10">Properties</h2>
+                    <button onclick="window.location.href='/properties'" class="justify-start bg-white bg-opacity-50 hover:bg-opacity-100 font-bold text-black py-2 px-3 rounded">
+                        Properties List
+                    </button>
+                    <button onclick="window.location.href='/create-property.html'" class="justify-end ml-2 bg-white bg-opacity-50 hover:bg-opacity-100 font-bold text-black py-2 px-3 rounded">
+                        Create Property
+                    </button>
+                </div>
             </section>
         </div>
     </main>
