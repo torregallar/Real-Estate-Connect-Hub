@@ -14,13 +14,13 @@
             <h1 class="text-4xl text-black font-bold text-center mt-10 border-2 border-white inline-block py-1 px-1 bg-white bg-opacity-50">Create Agency</h1>
         </div>
         <div class ="h-screen">
-            <form action="/agencies/createAgency" method="post">
+            <form action="/agency/modify/{{agency.id}}" method="post">
                 <fieldset>
                     <div class="flex justify-center">
                         <h2 class ="text-2xl text-black font-bold text mt-20 border-2 border-white inline-block py-1 px-1 bg-white bg-opacity-25">Agency details</h2>
                     </div>
                     <div class="flex justify-center">
-                        <section class="border-2 border-black mt-5 py-2 px-2 max-w-screen-md bg-white rounded">
+                        <section class="block inset-0 mt-5 mx-auto border-2 px-4 py-8 bg-white shadow-lg rounded-lg h-3/5 w-3/5 overflow-auto">
                             <label for="name" class ="font-bold">Name:</label>
                             <input type="text" id="name" name="name" value="" class = "border border-black" required>
                             <br><br>
