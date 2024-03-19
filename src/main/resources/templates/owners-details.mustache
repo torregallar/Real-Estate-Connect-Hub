@@ -10,29 +10,32 @@
 
 </head>
 <body class="font-mono">
-<main class="flex flex-col h-screen text-center bg-blue-200 justify-center items-center">
-    <h1 class="text-black mb-3 text-4xl bold">{{owner.name}} {{owner.lastName}} Details</h1>
-    <div class="flex inset-0 mx-auto border-2 px-4 py-8 bg-white shadow-lg rounded-lg h-3/5 w-3/5 overflow-auto justify-center items-center">
-        {{#owner}}
-            <div class="block px-6 py-4 text-2xl justify-start">
-                <strong>Name:</strong>{{owner.name}}<br>
-                <strong>Last name:</strong>{{owner.lastName}}<br>
-                <strong>Phone number:</strong>{{owner.phoneNumber}}<br>
-                <strong>Email:</strong> {{owner.email}}<br>
-            </div>
-        {{/owner}}
-    </div>
-    <div class="mt-2 flex flex-row">
-        <button onclick="window.location.href='/owner/deleteOwner/{{owner.id}}'" class="ml-2 bg-white bg-opacity-50 hover:bg-red-500 transition-all duration-300 font-bold text-black py-2 px-3 rounded">
-            Delete Owner
-        </button>
-        <button onclick="window.location.href='/owners'" class="ml-2 bg-white bg-opacity-50 hover:bg-opacity-100 font-bold transition-all duration-300 text-black py-2 px-3 rounded">
-            Back to Owners List
-        </button>
-        <button onclick="window.location.href='/owner/modify/{{owner.id}}'" class="ml-2 bg-white bg-opacity-50 hover:bg-green-300 transition-all duration-300 font-bold text-black py-2 px-3 rounded">
-            Modify Owner
-        </button>
-    </div>
-</main>
+    <main class="flex flex-col h-screen text-center bg-blue-200 justify-center items-center">
+        <h1 class="text-black mb-3 text-4xl bold">{{owner.name}} {{owner.lastName}} Details</h1>
+        <div class="flex inset-0 mx-auto border-2 px-4 py-8 bg-white shadow-lg rounded-lg h-3/5 w-3/5 overflow-auto justify-center items-center">
+            {{#owner}}
+                <div class="block px-6 py-4 text-2xl justify-start">
+                    <strong>Name:</strong>{{owner.name}}<br>
+                    <strong>Last name:</strong>{{owner.lastName}}<br>
+                    <strong>Phone number:</strong>{{owner.phoneNumber}}<br>
+                    <strong>Email:</strong> {{owner.email}}<br>
+                </div>
+            {{/owner}}
+        </div>
+        <div class="mt-2 flex flex-row">
+            <button id="deleteButton_{{owner.id}}" class="ml-2 bg-white bg-opacity-50 hover:bg-red-500 transition-all duration-300 font-bold text-black py-2 px-3 rounded">
+                Delete Owner
+            </button>
+            <button onclick="window.location.href='/owners'" class="ml-2 bg-white bg-opacity-50 hover:bg-opacity-100 font-bold transition-all duration-300 text-black py-2 px-3 rounded">
+                Back to Owners List
+            </button>
+            <button onclick="window.location.href='/owner/modify/{{owner.id}}'" class="ml-2 bg-white bg-opacity-50 hover:bg-green-300 transition-all duration-300 font-bold text-black py-2 px-3 rounded">
+                Modify Owner
+            </button>
+        </div>
+    </main>
+
+    <script src="/scripts/delete.js"></script>
+
 </body>
 </html>

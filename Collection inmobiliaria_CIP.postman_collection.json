@@ -1,0 +1,1046 @@
+{
+	"info": {
+		"_postman_id": "2e475a83-49de-4829-9166-bc2545488fac",
+		"name": "Collection inmobiliaria_CIP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33147198",
+		"_collection_link": "https://practicasistemasdistribuidos.postman.co/workspace/My-Workspace~9db0a8a8-62f6-46dd-85a6-ab2acb6f627b/collection/33504495-2e475a83-49de-4829-9166-bc2545488fac?action=share&source=collection_link&creator=33147198"
+	},
+	"item": [
+		{
+			"name": "Agency",
+			"item": [
+				{
+					"name": "C_realEstate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"name\": \"C Real Estate\",\r\n        \"phone\": 91876321,\r\n        \"email\": \"c_realestate@gmail.com\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/agencies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"agencies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "I_realEstate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"name\": \"I real Estate\",\r\n        \"phone\": 910852096,\r\n        \"email\": \"i_realestate@gmail.com\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/agencies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"agencies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "P_realEstate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"name\": \"P Real Estate\",\r\n        \"phone\": 919993330,\r\n        \"email\": \"p_realestate@gmail.com\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/agencies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"agencies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "HabitMax",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"name\": \"HabitMax\",\r\n        \"phone\": 910340055,\r\n        \"email\": \"Habitmax_realestate@gmail.com\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/agencies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"agencies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "VivaHome",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"name\": \"VivaHome\",\r\n        \"phone\": 912222222,\r\n        \"email\": \"vivahome_realestate@gmail.com\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/agencies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"agencies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NexoHome",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"name\": \"NexoCasa\",\r\n        \"phone\": 914444222,\r\n        \"email\": \"nexocasa_realestate@gmail.com\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/agencies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"agencies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CieloCasa",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"name\": \"Cielo Casa\",\r\n        \"phone\": 915555444,\r\n        \"email\": \"cielocasa_realestate@gmail.com\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/agencies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"agencies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SierraVista",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"name\": \"SierraVista\",\r\n        \"phone\": 917777555,\r\n        \"email\": \"sierravista_realestate@gmail.com\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/agencies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"agencies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Agencies",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/agencies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"agencies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "I --> Inmobiliaria ivan",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"name\": \"Inmobiliaria Iván\",\r\n        \"phone\": 910852096,\r\n        \"email\": \"i_realestate@gmail.com\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/agencies/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"agencies",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "HabitMax_realEstate (4)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/agencies/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"agencies",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "C realEstate --> C Inmobiliaria",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"C Inmobiliaria\",\r\n    \"phone\": 91876321,\r\n    \"email\": \"c_realestate@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/agencies/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"agencies",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Owner",
+			"item": [
+				{
+					"name": "Carlos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"name\": \"Carlos\",\r\n        \"lastName\": \"Bolívar\",\r\n        \"phoneNumber\": \"678700965\",\r\n        \"email\": \"carlos@gmail.com\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/owners",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"owners"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Iván",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"name\": \"Ivan\",\r\n        \"lastName\": \"Torregrosa\",\r\n        \"phoneNumber\": \"645784309\",\r\n        \"email\": \"ivan@gmail.com\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/owners",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"owners"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patricia",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"name\": \"Patricia\",\r\n        \"lastName\": \"Landa\",\r\n        \"phoneNumber\": \"645478965\",\r\n        \"email\": \"patricia@gmail.com\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/owners",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"owners"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Juan",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"name\": \"Juan\",\r\n        \"lastName\": \"García\",\r\n        \"phoneNumber\": \"638907604\",\r\n        \"email\": \"juan@gmail.com\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/owners",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"owners"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pablo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"name\": \"Pablo\",\r\n        \"lastName\": \"Garrido\",\r\n        \"phoneNumber\": \"638555333\",\r\n        \"email\": \"pablogarrido@gmail.com\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/owners",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"owners"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lucía",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"name\": \"Lucía\",\r\n        \"lastName\": \"López\",\r\n        \"phoneNumber\": \"638666222\",\r\n        \"email\": \"lucialopez@gmail.com\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/owners",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"owners"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Gonzalo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"name\": \"Gonzalo\",\r\n        \"lastName\": \"Serrano\",\r\n        \"phoneNumber\": \"638111777\",\r\n        \"email\": \"gonzaloserrano@gmail.com\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/owners",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"owners"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "David",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"name\": \"David\",\r\n        \"lastName\": \"Martínez\",\r\n        \"phoneNumber\": \"638999666\",\r\n        \"email\": \"davidmartinez@gmail.com\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/owners",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"owners"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "owners",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/owners",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"owners"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Carlos --> Pepe",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"name\": \"Pepe\",\r\n        \"lastName\": \"Bolívar\",\r\n        \"phoneNumber\": \"678700965\",\r\n        \"email\": \"pepe@gmail.com\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/owners/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"owners",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pepe",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/owners/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"owners",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "modify  email Patricia (3))",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"patricialanda@gmail.es\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/owners/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"owners",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Property",
+			"item": [
+				{
+					"name": "Chalet Madrid",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Chalet independiente\",\r\n    \"price\": 737000.0,\r\n    \"type\": \"Chalet\",\r\n    \"rooms\": 5,\r\n    \"bathrooms\": 3,\r\n    \"sqMetres\": 447.0,\r\n    \"address\": \"Avenida del lago, Madrid\",\r\n    \"description\": \"Chalet independiente con garaje y piscina. Construido en 2000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/properties",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"properties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Chalet Galapagar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"name\": \"Chalet pareado\",\r\n        \"price\": 740000.0,\r\n        \"type\": \"Chalet\",\r\n        \"rooms\": 5,\r\n        \"bathrooms\": 4,\r\n        \"sqMetres\": 425.0,\r\n        \"address\": \"Calle orquídea, Galapagar\",\r\n        \"description\": \"Chalet con piscina. Contruido en 2003\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/properties",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"properties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ático Móstoles",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Ático Mostoles\",\r\n    \"price\": 339000.0,\r\n    \"type\": \"Ático\",\r\n    \"rooms\": 4,\r\n    \"bathrooms\": 2,\r\n    \"sqMetres\": 130.0,\r\n    \"address\": \"Calle de los cedros, Coimbra\",\r\n    \"description\": \"En quinta planta, construido en 2018\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/properties",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"properties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Chalet Móstoles",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Chalet adosado Mostoles\",\r\n    \"price\": 354900.0,\r\n    \"type\": \"Chalet\",\r\n    \"rooms\": 4,\r\n    \"bathrooms\": 3,\r\n    \"sqMetres\": 190.0,\r\n    \"address\": \"travesía de los arces, Coimbra\",\r\n    \"description\": \"con piscina y garaje.Construido en 2018\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/properties",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"properties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Piso Fuenlabrada",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Piso en Fuenlabrada\",\r\n    \"price\": 145000.0,\r\n    \"type\": \"piso\",\r\n    \"rooms\": 3,\r\n    \"bathrooms\": 1,\r\n    \"sqMetres\": 81.0,\r\n    \"address\": \"El Molino, Fuenlabrada\",\r\n    \"description\": \"En primera planta, con ascensor.Construido en 2005\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/properties",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"properties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Chalet Fuenlabrada",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Chalet pareado Fuenlabrada\",\r\n    \"price\": 399900.0,\r\n    \"type\": \"Chalet\",\r\n    \"rooms\": 4,\r\n    \"bathrooms\": 2,\r\n    \"sqMetres\": 180.0,\r\n    \"address\": \"calle Villa Livia, Fuenlabrada\",\r\n    \"description\": \" 2 plantas .Construido en 1988\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/properties",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"properties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ático Madrid",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Ático Madrid\",\r\n    \"price\": 529000.0,\r\n    \"type\": \"Chalet\",\r\n    \"rooms\": 2,\r\n    \"bathrooms\": 1,\r\n    \"sqMetres\": 97.0,\r\n    \"address\": \"Calle del Doctor Esquerdo, Madrid\",\r\n    \"description\": \"En Séptima planta, con pisascensor y garaje.Construido en 2003\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/properties",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"properties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dúplex Aluche",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Dúplex Aluche\",\r\n    \"price\": 490000.0,\r\n    \"type\": \"Dúplex\",\r\n    \"rooms\": 5,\r\n    \"bathrooms\": 3,\r\n    \"sqMetres\": 168.0,\r\n    \"address\": \"Gilmar Madrid-Río\",\r\n    \"description\": \"tercera planta.Construido en 1995\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/properties",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"properties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "properties",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/properties",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"properties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change Ático Mostoles-->san Fernando",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"Piso en San Fernando\",\r\n        \"price\": 400000,\r\n        \"type\": \"piso\",\r\n        \"rooms\": 4,\r\n        \"bathrooms\": 2,\r\n        \"sqMetres\": 100,\r\n        \"address\": \"Calle San Fernando, Madrid\",\r\n        \"description\": \"piso construido en 2009\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/properties/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"properties",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "chalet madrid (1)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/properties/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"properties",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "modify descripción Piso Fuenlabrada (5)",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"En septima planta,sin ascensor. Construido en 1996\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/properties/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"properties",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

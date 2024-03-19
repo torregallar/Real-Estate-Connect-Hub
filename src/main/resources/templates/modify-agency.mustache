@@ -6,32 +6,38 @@
     <title>Modify agency</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="../static/images/CIP_Icon.png">
+
+
 </head>
 
 <body class="font-mono bg-blue-200">
-<main class="flex flex-col h-screen text-center text-black bg-blue-200 justify-center items-center">
+    <main class="flex flex-col h-screen text-center text-black bg-blue-200 justify-center items-center">
 
-    <h1 class="text-4xl font-bold text-center mt-10 mb-4 py-1 px-1">Agency details</h1>
+        <h1 class="text-4xl font-bold text-center mt-10 mb-4 py-1 px-1">Agency details</h1>
 
-    <div class="flex justify-center items-center inset-0 mx-auto border-2 px-4 py-8 bg-white shadow-lg rounded-lg h-3/5 w-3/5">
-        <form action="/agency/modify/{{agency.id}}" method="post" class="h-fit flex flex-col w-3/4">
-            <label for="name" class ="font-bold">Name:</label>
-            <input type="text" id="name" name="name" value="{{agency.name}}" class="text-center rounded-lg bg-gray-200 hover:bg-gray-300 transition-all duration-300" required>
-            <br><br>
-            <label for="phone" class ="font-bold">Phone number:</label>
-            <input type="tel" id="phone" name="phone" value="{{agency.phone}}" class="text-center rounded-lg bg-gray-200 hover:bg-gray-300 transition-all duration-300" required>
-            <br><br>
-            <label for="email" class ="font-bold">Email:</label>
-            <input type="email" id="email" name="email" value="{{agency.email}}" class="text-center rounded-lg bg-gray-200 hover:bg-gray-300 transition-all duration-300" required>
-            <br><br>
-            <div class="flex justify-center">
-                <button type="submit" class="text-black font-bold bg-blue-300 bg-opacity-50 hover:bg-opacity-100 transition-all duration-300 px-2 py-2 rounded">Modify Agency</button>
-            </div>
-            <br>
-        </form>
-    </div>
-    <div class="flex justify-center">
-        <a href="/agencies" class="text-black font-bold bg-white bg-opacity-50 hover:bg-opacity-100 transition-all duration-300 py-2 px-4 rounded mt-8 border border-white">Agencies list</a>
-    </div>
-</main>
+        <div class="flex justify-center items-center inset-0 mx-auto border-2 px-4 py-8 bg-white shadow-lg rounded-lg h-3/5 w-3/5">
+            <form id="form" action="/agency/modify/{{agency.id}}" method="post" class="h-fit flex flex-col w-3/4">
+                <label for="name" class ="font-bold">Name:</label>
+                <input type="text" id="name" name="name" value="{{agency.name}}" class="text-center rounded-lg bg-gray-200 hover:bg-gray-300 transition-all duration-300" required>
+                <br><br>
+                <label for="phone" class ="font-bold">Phone number:</label>
+                <input type="tel" id="phone" name="phone" value="{{agency.phone}}" class="text-center rounded-lg bg-gray-200 hover:bg-gray-300 transition-all duration-300" required>
+                <br><br>
+                <label for="email" class ="font-bold">Email:</label>
+                <input type="email" id="email" name="email" value="{{agency.email}}" class="text-center rounded-lg bg-gray-200 hover:bg-gray-300 transition-all duration-300" required>
+                <br><br>
+                <div class="flex justify-center">
+                    <button id="createButton" class="text-black font-bold bg-blue-300 bg-opacity-50 hover:bg-opacity-100 transition-all duration-300 px-2 py-2 rounded">Modify Agency</button>
+                </div>
+                <br>
+            </form>
+        </div>
+        <div class="flex justify-center">
+            <a href="/agencies" class="text-black font-bold bg-white bg-opacity-50 hover:bg-opacity-100 transition-all duration-300 py-2 px-4 rounded mt-8 border border-white">Agencies list</a>
+        </div>
+    </main>
+    <script src="/scripts/modify.js"></script>
+    <script src="/scripts/notNegative.js"></script>
+
 </body>
+</html>
