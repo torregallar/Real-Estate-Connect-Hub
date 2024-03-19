@@ -5,12 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Property details</title>
 
-    <link rel="icon" type="image/png" href="/images/CIP_Icon.png">
+    <link rel="icon" type="image/png" href="../static/images/CIP_Icon.png">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    {{#property}}
-        <h1>{{property.name}}</h1>
-            <list>
+<body class="font-mono">
+<main class="flex flex-col h-screen text-center bg-blue-200 justify-center items-center">
+    <h1 class="text-black mb-4 text-4xl bold">{{property.name}} Details</h1>
+    <div class="flex inset-0 mx-auto border-2 px-4 py-8 bg-white shadow-lg rounded-lg h-3/5 w-3/5 overflow-auto justify-center items-center">
+        {{#property}}
+            <div class="block px-6 py-4 text-2xl justify-start">
+                <strong>Name:</strong> {{property.name}}<br>
                 <strong>Price:</strong> {{property.price}}<br>
                 <strong>Type:</strong> {{property.type}}<br>
                 <strong>Rooms:</strong> {{property.rooms}}<br>
@@ -18,16 +22,20 @@
                 <strong>Surface:</strong> {{property.sqMetres}}<br>
                 <strong>Address:</strong> {{property.address}}<br>
                 <strong>Description:</strong> {{property.description}}<br>
-            </list>
-    {{/property}}
-    <br>
-    <form action="/property/deleteProperty/{{property.id}}" method="get">
-        <button type="submit">Delete property</button>
-    </form>
-    <button onclick="window.location.href='/property/modify/{{property.id}}'">
-        Modify Property
-    </button>
-    <br><br>
-    <a href="/properties">Property List</a>
+            </div>
+        {{/property}}
+    </div>
+    <div class="mt-2 flex flex-row">
+        <button onclick="window.location.href='/property/deleteProperty/{{property.id}}'" class="ml-2 bg-white bg-opacity-50 hover:bg-red-500 transition-all duration-300 font-bold text-black py-2 px-3 rounded">
+            Delete Property
+        </button>
+        <button onclick="window.location.href='/properties'" class="ml-2 bg-white bg-opacity-50 hover:bg-opacity-100 transition-all duration-300 font-bold text-black py-2 px-3 rounded">
+            Back to Properties List
+        </button>
+        <button onclick="window.location.href='/property/modify/{{property.id}}'" class="ml-2 bg-white bg-opacity-50 hover:bg-green-300 transition-all duration-300 font-bold text-black py-2 px-3 rounded">
+            Modify Property
+        </button>
+    </div>
+</main>
 </body>
 </html>

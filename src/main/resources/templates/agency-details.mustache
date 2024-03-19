@@ -3,27 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agency details</title>
+    <title>Owner details</title>
 
-    <link rel="icon" type="image/png" href="/images/CIP_Icon.png">
+    <link rel="icon" type="image/png" href="../static/images/CIP_Icon.png">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-
-    <h1>{{agency.name}}</h1>
-    {{#agency}}
-        <list>
-            <strong>Phone:</strong> {{agency.phone}}<br>
-            <strong>Email:</strong> {{agency.email}}<br>
-        </list>
-    {{/agency}}
-<br>
-<form action="/agency/deleteAgency/{{agency.id}}" method="get">
-    <button type="submit">Delete Agency</button>
-</form>
-<button onclick="window.location.href='/agency/modify/{{agency.id}}'">
-    Modify Agency
-</button>
-<br><br>
-<a href="/agencies">Agency List</a>
+<body class="font-mono">
+<main class="flex flex-col h-screen text-center bg-blue-200 justify-center items-center">
+    <h1 class="text-black mb-4 text-4xl bold">{{agency.name}} Details</h1>
+    <div class="flex inset-0 mx-auto border-2 px-4 py-8 bg-white shadow-lg rounded-lg h-3/5 w-3/5 overflow-auto justify-center items-center">
+        {{#agency}}
+            <div class="block px-6 py-4 text-2xl justify-start">
+                <strong>Name:</strong> {{agency.name}}<br>
+                <strong>Phone:</strong> {{agency.phone}}<br>
+                <strong>Email:</strong> {{agency.email}}<br>
+            </div>
+        {{/agency}}
+    </div>
+    <div class="mt-2 flex flex-row">
+        <button onclick="window.location.href='/agency/deleteAgency/{{agency.id}}'" class="ml-2 bg-white bg-opacity-50 hover:bg-red-500 transition-all duration-300 font-bold text-black py-2 px-3 rounded">
+            Delete Agency
+        </button>
+        <button onclick="window.location.href='/agencies'" class="ml-2 bg-white bg-opacity-50 hover:bg-opacity-100 transition-all duration-300 font-bold text-black py-2 px-3 rounded">
+            Back to Agencies List
+        </button>
+        <button onclick="window.location.href='/agency/modify/{{agency.id}}'" class="ml-2 bg-white bg-opacity-50 hover:bg-green-300 transition-all duration-300 font-bold text-black py-2 px-3 rounded">
+            Modify Agency
+        </button>
+    </div>
+</main>
 </body>
 </html>
