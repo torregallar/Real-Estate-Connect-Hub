@@ -14,17 +14,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class AgencyController {
 
     @Autowired
-    AgencyService AgencyService;
+    AgencyService agencyService;
 
     @GetMapping("/agencies")
     public String getAgencies (Model model){
-        model.addAttribute("agencies", AgencyService.getAgencies());
+        model.addAttribute("agencies", agencyService.getAgencies());
         return "agency";
     }
 
     @GetMapping("/agency/{id}")
     public String getAgency (Model model, @PathVariable int id) {
-        Agency agency = AgencyService.getAgency(id);
+        Agency agency = agencyService.getAgency(id);
         if (agency != null) {
             model.addAttribute("agency", agency);
             return "agency-details";
@@ -34,25 +34,25 @@ public class AgencyController {
 
     @PostMapping("/agencies/createAgency")
     public String createProperty (Agency agency) {
-        AgencyService.createAgency(agency);
+        agencyService.createAgency(agency);
         return "redirect:/agencies";
     }
 
     @GetMapping("/agency/deleteAgency/{id}")
     public String deleteAgency(@PathVariable int id) {
-        AgencyService.deleteAgency(id);
+        agencyService.deleteAgency(id);
         return "redirect:/agencies";
     }
 
     @GetMapping("/agency/modify/{id}")
     public String modifyAgency(@PathVariable int id, Model model) {
-        model.addAttribute("agency", AgencyService.getAgency(id));
+        model.addAttribute("agency", agencyService.getAgency(id));
         return "/modify-agency";
     }
 
     @PostMapping("/agency/modify/{id}")
     public String modifyAgency(@PathVariable int id, Agency agency) {
-        AgencyService.updateAgency(id, agency);
+        agencyService.updateAgency(id, agency);
         return "redirect:/agency/{id}";
     }
 }

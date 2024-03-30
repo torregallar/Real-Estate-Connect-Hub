@@ -6,6 +6,6 @@ document.getElementById('submitButton').addEventListener('click', function(event
     if (message) {
         document.getElementById("entityForm").submit();
     } else {
-        alert("Modification cancelled");
+        //alert("Modification cancelled");
     }
 });
