@@ -59,7 +59,7 @@ public class AgencyRestController {
         if (updatedAgency != null) {
             return ResponseEntity.ok(updatedAgency);
         }
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.badRequest().build();
     }
 
     @PatchMapping("/{id}")
@@ -68,7 +68,7 @@ public class AgencyRestController {
         if (updatedAgency != null) {
             return ResponseEntity.ok(updatedAgency);
         }
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.badRequest().build();
     }
 
 }
