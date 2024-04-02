@@ -23,7 +23,7 @@
             {{/owner}}
         </div>
         <div class="mt-2 flex flex-row">
-            <button id="deleteButton_{{owner.id}}" class="ml-2 bg-white bg-opacity-50 hover:bg-red-500 transition-all duration-300 font-bold text-black py-2 px-3 rounded">
+            <button id="deleteButton_{{owner.id}}" data-entity="owner" class="ml-2 bg-white bg-opacity-50 hover:bg-red-500 transition-all duration-300 font-bold text-black py-2 px-3 rounded">
                 Delete Owner
             </button>
             <button onclick="window.location.href='/owners'" class="ml-2 bg-white bg-opacity-50 hover:bg-opacity-100 font-bold transition-all duration-300 text-black py-2 px-3 rounded">
