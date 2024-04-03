@@ -1,5 +1,6 @@
 package com.ssdd.Inmobiliaria_CIP.services;
 
+import com.ssdd.Inmobiliaria_CIP.entities.Agency;
 import com.ssdd.Inmobiliaria_CIP.entities.Owner;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
@@ -18,9 +19,13 @@ public class OwnerService {
     public OwnerService(){}
 
     public Owner createOwner(Owner owner){
+
+        if (fieldsAreNull(owner)) return null;
+
         int id = nextId.incrementAndGet();
         owner.setId(id);
         owners.put(id, owner);
+
         return owner;
     }
 
@@ -38,6 +43,7 @@ public class OwnerService {
 
     public Owner updateOwner(int id, Owner owner) {
         if (owners.containsKey(id)) {
+            if (fieldsAreNull(owner)) return null;
             owner.setId(id);
             owners.put(id, owner);
             return owner;
@@ -46,16 +52,53 @@ public class OwnerService {
     }
 
     public Owner updateOwnerFields(int id, Map<String, Object> fields){
-        Owner ownerToUpdate = owners.get(id);
-        if(ownerToUpdate != null){
+
+
+        if(owners.containsKey(id)){
+            Owner ownerToUpdate = owners.get(id);
+
+            if (fields.containsKey("name") && fields.get("name").toString().isEmpty()) {
+                return null;
+            }
+
+            if (fields.containsKey("lastName") && fields.get("lastName").toString().isEmpty()) {
+                return null;
+            }
+
+            if (fields.containsKey("phoneNumber") && (String.valueOf(fields.get("phoneNumber")).length() != 9 || (long)fields.get("phoneNumber")<=0)) {
+                return null;
+            }
+
+            if (fields.containsKey("email") && !fields.get("email").toString().contains("@")) {
+                return null;
+            }
+
             fields.forEach((name,value)->{
-                Field field = ReflectionUtils.findField(Owner.class, name);
-                field.setAccessible(true);
-                ReflectionUtils.setField(field, ownerToUpdate, value);
+                if (!name.equals("id")) {
+                    Field field = ReflectionUtils.findField(Owner.class, name);
+                    field.setAccessible(true);
+                    ReflectionUtils.setField(field, ownerToUpdate, value);
+                }
             });
-            owners.put(id, ownerToUpdate);
             return ownerToUpdate;
         }
         return null;
+    }
+
+    private boolean fieldsAreNull(Owner owner) {
+        if ((owner.getName() == null) || (owner.getName().isEmpty()) || (owner.getLastName() == null)
+            || (owner.getLastName().isEmpty()) || (owner.getEmail() == null) || (owner.getEmail().isEmpty())
+                || (owner.getPhoneNumber() <= 0)) { // fields validation
+                    return true;
+        }
+
+        if (String.valueOf(owner.getPhoneNumber()).length() != 9) {
+            return true;
+        }
+
+        if (!owner.getEmail().contains("@")) {
+            return true;
+        }
+        return false;
     }
 }

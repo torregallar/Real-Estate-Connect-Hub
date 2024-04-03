@@ -51,21 +51,7 @@ public class AgencyService {
         return null;
     }
 
-    private boolean fieldsAreNull(Agency agency) {
-        if ((agency.getName() == null) || (agency.getName().isEmpty()) || (agency.getEmail() == null) || (agency.getEmail().isEmpty()) || (agency.getPhone() == 0) ) { // fields validation
-            System.out.println(agency.getEmail() + agency.getName() + agency.getPhone());
-            return true;
-        }
 
-        if (String.valueOf(agency.getPhone()).length() != 9) {
-            return true;
-        }
-
-        if (!agency.getEmail().contains("@")) {
-            return true;
-        }
-        return false;
-    }
 
     public Agency updateAgencyFields(int id, Map<String, Object> fields) {
         if (agencies.containsKey(id)) {
@@ -75,11 +61,11 @@ public class AgencyService {
                 return null;
             }
 
-            if (String.valueOf(fields.get("phone")).length() != 9) {
+            if (fields.containsKey("phone") && String.valueOf(fields.get("phone")).length() != 9) {
                 return null;
             }
 
-            if (!fields.get("email").toString().contains("@")) {
+            if (fields.containsKey("email") && !fields.get("email").toString().contains("@")) {
                 return null;
             }
 
@@ -93,5 +79,20 @@ public class AgencyService {
             return agencyToUpdate;
         }
         return null;
+    }
+
+    private boolean fieldsAreNull(Agency agency) {
+        if ((agency.getName() == null) || (agency.getName().isEmpty()) || (agency.getEmail() == null) || (agency.getEmail().isEmpty()) || (agency.getPhone() == 0) ) { // fields validation
+            return true;
+        }
+
+        if (String.valueOf(agency.getPhone()).length() != 9) {
+            return true;
+        }
+
+        if (!agency.getEmail().contains("@")) {
+            return true;
+        }
+        return false;
     }
 }

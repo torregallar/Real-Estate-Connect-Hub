@@ -8,13 +8,13 @@ public class Owner {
     private int id;
     private String name;
     private String lastName;
-    private String phoneNumber;
+    private long phoneNumber;
     private String email;
 
     public Owner() {
     }
 
-    public Owner( String name, String lastName,  String phoneNumber, String email) {
+    public Owner( String name, String lastName, long phoneNumber, String email) {
         this.name = name;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
@@ -46,11 +46,11 @@ public class Owner {
     }
 
 
-    public String getPhoneNumber() {
+    public long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

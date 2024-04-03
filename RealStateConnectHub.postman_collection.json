@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "2e475a83-49de-4829-9166-bc2545488fac",
-		"name": "Collection inmobiliaria_CIP",
+		"_postman_id": "2ab1b4f8-bc05-4ef1-bdc7-b56110f0aa20",
+		"name": "RealStateConnectHub",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "33147198",
-		"_collection_link": "https://practicasistemasdistribuidos.postman.co/workspace/My-Workspace~9db0a8a8-62f6-46dd-85a6-ab2acb6f627b/collection/33504495-2e475a83-49de-4829-9166-bc2545488fac?action=share&source=collection_link&creator=33147198"
+		"_collection_link": "https://practicasistemasdistribuidos.postman.co/workspace/My-Workspace~9db0a8a8-62f6-46dd-85a6-ab2acb6f627b/collection/33147198-2ab1b4f8-bc05-4ef1-bdc7-b56110f0aa20?action=share&source=collection_link&creator=33147198"
 	},
 	"item": [
 		{
@@ -17,7 +17,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\r\n        \"name\": \"C Real Estate\",\r\n        \"phone\": 91876321,\r\n        \"email\": \"c_realestate@gmail.com\"\r\n    }",
+							"raw": "    {\r\n        \"name\": \"C Real Estate\",\r\n        \"phone\": 918763212,\r\n        \"email\": \"c_realestate@gmail.com\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -220,7 +220,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\r\n        \"name\": \"SierraVista\",\r\n        \"phone\": 917777555,\r\n        \"email\": \"sierravista_realestate@gmail.com\"\r\n    }",
+							"raw": "    {\r\n        \"name\": \"\",\r\n        \"phone\": 917777555,\r\n        \"email\": \"sierravista_realestate@gmail.com\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -341,7 +341,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"C Inmobiliaria\",\r\n    \"phone\": 91876321,\r\n    \"email\": \"c_realestate@gmail.com\"\r\n}",
+							"raw": "{\r\n    \"name\": \"C Inmobiliaria\",\r\n    \"phone\": 918763217,\r\n    \"email\": \"c_realestate@gmail.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
