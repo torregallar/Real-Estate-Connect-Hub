@@ -1,10 +1,14 @@
 package com.ssdd.Inmobiliaria_CIP.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 import java.time.LocalDate;
 
+@Entity
 public class Property {
+    @Id
     private int id;
     private String name;
     private double price;

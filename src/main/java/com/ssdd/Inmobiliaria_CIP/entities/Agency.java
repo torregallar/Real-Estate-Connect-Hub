@@ -1,6 +1,11 @@
 package com.ssdd.Inmobiliaria_CIP.entities;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Agency {
+    @Id
     private int id;
     private String name;
     private long phone;
