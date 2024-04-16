@@ -2,6 +2,7 @@ package com.ssdd.Inmobiliaria_CIP.services;
 
 import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import com.ssdd.Inmobiliaria_CIP.entities.Agency;
+import com.ssdd.Inmobiliaria_CIP.entities.Owner;
 import com.ssdd.Inmobiliaria_CIP.entities.Property;
 import com.ssdd.Inmobiliaria_CIP.repositories.OwnerRepository;
 import com.ssdd.Inmobiliaria_CIP.repositories.PropertyRepository;
@@ -25,12 +26,16 @@ public class PropertyService {
     public PropertyService () {}
 
     public Property createProperty(Property property) {
+        Owner owner;
 
         if (fieldsAreNull(property)) return null;
 
         property.setId(0);
 
-        if (ownerRepository.existsById(property.getOwner().getId())) { // The owner of this property exists, so we can create the property
+        owner = ownerRepository.findById(property.getOwner().getId()).orElse(null);
+
+        if (owner != null) { // The owner of this property exists, so we can create the property
+            property.setOwner(owner);
             return propertyRepository.save(property);
         }
 
