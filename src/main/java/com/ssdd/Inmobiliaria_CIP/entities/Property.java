@@ -1,10 +1,7 @@
 package com.ssdd.Inmobiliaria_CIP.entities;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.*;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
@@ -21,12 +18,17 @@ public class Property {
     private double sqMetres;
     private String address;
     private String description;
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
+    @JsonIdentityReference(alwaysAsId = true)
+    private Owner owner;
 
 
     public Property() {
     }
 
-    public Property(String name, double price, String type, int rooms, int bathrooms, double sqMetres, String address, String description) {
+    public Property(String name, double price, String type, int rooms, int bathrooms, double sqMetres, String address, String description, Owner owner) {
         this.name = name;
         this.price = price;
         this.type = type;
@@ -35,6 +37,7 @@ public class Property {
         this.sqMetres = sqMetres;
         this.address = address;
         this.description = description;
+        this.owner = owner;
     }
 
     public int getId() {
@@ -107,5 +110,13 @@ public class Property {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 }

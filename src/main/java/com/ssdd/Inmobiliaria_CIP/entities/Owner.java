@@ -1,13 +1,9 @@
 package com.ssdd.Inmobiliaria_CIP.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.*;
+import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 public class Owner {
@@ -18,6 +14,10 @@ public class Owner {
     private String lastName;
     private long phoneNumber;
     private String email;
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
+    @JsonIdentityReference(alwaysAsId = true)
+    private Set<Property> properties = new HashSet<>();
 
     public Owner() {
     }
@@ -68,5 +68,13 @@ public class Owner {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Set<Property> getProperties() {
+        return properties;
+    }
+
+    public void setProperties(Set<Property> properties) {
+        this.properties = properties;
     }
 }

@@ -3,6 +3,7 @@ package com.ssdd.Inmobiliaria_CIP.services;
 import com.ssdd.Inmobiliaria_CIP.entities.Agency;
 import com.ssdd.Inmobiliaria_CIP.entities.Property;
 import com.ssdd.Inmobiliaria_CIP.repositories.AgencyRepository;
+import com.ssdd.Inmobiliaria_CIP.repositories.OwnerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
@@ -17,6 +18,8 @@ public class AgencyService {
 
     @Autowired
     private AgencyRepository agencyRepository;
+    @Autowired
+    private OwnerRepository ownerRepository;
 
     public AgencyService () {}
 

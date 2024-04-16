@@ -3,6 +3,7 @@ package com.ssdd.Inmobiliaria_CIP.services;
 import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import com.ssdd.Inmobiliaria_CIP.entities.Agency;
 import com.ssdd.Inmobiliaria_CIP.entities.Property;
+import com.ssdd.Inmobiliaria_CIP.repositories.OwnerRepository;
 import com.ssdd.Inmobiliaria_CIP.repositories.PropertyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,16 +19,22 @@ public class PropertyService {
 
     @Autowired
     private PropertyRepository propertyRepository;
+    @Autowired
+    private OwnerRepository ownerRepository;
 
     public PropertyService () {}
 
     public Property createProperty(Property property) {
 
         if (fieldsAreNull(property)) return null;
+
         property.setId(0);
 
-        propertyRepository.save(property);
-        return property;
+        if (ownerRepository.existsById(property.getOwner().getId())) { // The owner of this property exists, so we can create the property
+            return propertyRepository.save(property);
+        }
+
+        return null;
     }
 
     public List<Property> getProperties() {
