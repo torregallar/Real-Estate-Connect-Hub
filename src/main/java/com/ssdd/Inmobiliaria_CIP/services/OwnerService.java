@@ -2,60 +2,65 @@ package com.ssdd.Inmobiliaria_CIP.services;
 
 import com.ssdd.Inmobiliaria_CIP.entities.Agency;
 import com.ssdd.Inmobiliaria_CIP.entities.Owner;
+import com.ssdd.Inmobiliaria_CIP.repositories.OwnerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 public class OwnerService {
-    private Map<Integer, Owner> owners = new HashMap<>();
-    private AtomicInteger nextId = new AtomicInteger(0);
+    @Autowired
+    private OwnerRepository ownerRepository;;
+
     public OwnerService(){}
 
     public Owner createOwner(Owner owner){
 
         if (fieldsAreNull(owner)) return null;
+        owner.setId(0);
 
-        int id = nextId.incrementAndGet();
-        owner.setId(id);
-        owners.put(id, owner);
+        ownerRepository.save(owner);
 
         return owner;
     }
 
     public List<Owner> getOwners(){
-        return new ArrayList<>(owners.values());
+        return ownerRepository.findAll();
     }
 
     public Owner getOwner(int id){
-        return owners.get(id);
+        Optional<Owner> optionalOwner = ownerRepository.findById(id);
+
+        return optionalOwner.orElse(null);
     }
 
     public Owner deleteOwner(int id){
-        return owners.remove(id);
+        Optional<Owner> optionalOwner = ownerRepository.findById(id);
+        if (optionalOwner.isPresent()) {
+            ownerRepository.deleteById(id);
+        }
+        return optionalOwner.orElse(null);
     }
 
     public Owner updateOwner(int id, Owner owner) {
-        if (owners.containsKey(id)) {
+        Optional<Owner> optionalOwner = ownerRepository.findById(id);
+        if (optionalOwner.isPresent()) {
             if (fieldsAreNull(owner)) return null;
             owner.setId(id);
-            owners.put(id, owner);
+            ownerRepository.save(owner);
             return owner;
         }
         return null;
     }
 
     public Owner updateOwnerFields(int id, Map<String, Object> fields){
+        Owner ownerToUpdate = ownerRepository.findById(id).orElse(null);
 
-
-        if(owners.containsKey(id)){
-            Owner ownerToUpdate = owners.get(id);
+        if(ownerToUpdate != null){
 
             if (fields.containsKey("name") && fields.get("name").toString().isEmpty()) {
                 return null;
@@ -80,7 +85,7 @@ public class OwnerService {
                     ReflectionUtils.setField(field, ownerToUpdate, value);
                 }
             });
-            return ownerToUpdate;
+            return ownerRepository.save(ownerToUpdate);
         }
         return null;
     }

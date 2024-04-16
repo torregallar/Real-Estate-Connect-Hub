@@ -50,8 +50,8 @@ public class AgencyService {
     public Agency updateAgency (int id, Agency agency) {
         Optional<Agency> optionalAgency = agencyRepository.findById(id);
         if (optionalAgency.isPresent()) {
-            agency.setId(id);
             if (fieldsAreNull(agency)) return null;
+            agency.setId(id);
             agencyRepository.save(agency);
             return agency;
         }
