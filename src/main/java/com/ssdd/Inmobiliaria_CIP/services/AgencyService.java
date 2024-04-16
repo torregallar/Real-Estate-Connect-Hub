@@ -52,8 +52,8 @@ public class AgencyService {
         if (optionalAgency.isPresent()) {
             if (fieldsAreNull(agency)) return null;
             agency.setId(id);
-            agencyRepository.save(agency);
-            return agency;
+
+            return agencyRepository.save(agency);
         }
         return null;
     }

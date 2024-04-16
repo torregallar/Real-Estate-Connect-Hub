@@ -51,8 +51,8 @@ public class OwnerService {
         if (optionalOwner.isPresent()) {
             if (fieldsAreNull(owner)) return null;
             owner.setId(id);
-            ownerRepository.save(owner);
-            return owner;
+
+            return ownerRepository.save(owner);
         }
         return null;
     }

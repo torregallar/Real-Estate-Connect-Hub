@@ -3,61 +3,66 @@ package com.ssdd.Inmobiliaria_CIP.services;
 import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import com.ssdd.Inmobiliaria_CIP.entities.Agency;
 import com.ssdd.Inmobiliaria_CIP.entities.Property;
+import com.ssdd.Inmobiliaria_CIP.repositories.PropertyRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class PropertyService {
 
-    private Map<Integer, Property> properties = new HashMap<>();
-    private AtomicInteger nextId = new AtomicInteger(0);
+    @Autowired
+    private PropertyRepository propertyRepository;
 
     public PropertyService () {}
 
     public Property createProperty(Property property) {
 
         if (fieldsAreNull(property)) return null;
+        property.setId(0);
 
-        int id = nextId.incrementAndGet();
-        property.setId(id);
-        properties.put(id, property);
-
+        propertyRepository.save(property);
         return property;
     }
 
     public List<Property> getProperties() {
-        return new ArrayList<>(properties.values());
+        return propertyRepository.findAll();
     }
 
     public Property getProperty(int id) {
-        return properties.get(id);
+        Optional<Property> optionalProperty = propertyRepository.findById(id);
+
+        return optionalProperty.orElse(null);
     }
 
     public Property deleteProperty(int id) {
-        return properties.remove(id);
+        Optional<Property> optionalProperty = propertyRepository.findById(id);
+        if (optionalProperty.isPresent()) {
+            propertyRepository.deleteById(id);
+        }
+        return optionalProperty.orElse(null);
     }
 
     public Property updateProperty(int id, Property property) {
-        if (properties.containsKey(id)) { // Verifies if Map contains given id
+        Optional<Property> optionalProperty = propertyRepository.findById(id);
+        if (optionalProperty.isPresent()) {
             if (fieldsAreNull(property)) return null;
             property.setId(id);
-            properties.put(id, property);
-            return property;
+
+            return propertyRepository.save(property);
         }
         return null;
     }
 
     public Property updatePropertyFields(int id, Map<String, Object> fields) { // Patch function
-        if (properties.containsKey(id)) {
-            Property propertyToUpdate = properties.get(id);
+        Property propertyToUpdate = propertyRepository.findById(id).orElse(null);
+
+        if (propertyToUpdate != null) {
 
             if (fields.containsKey("name") && fields.get("name").toString().isEmpty()) {
                 return null;
@@ -98,7 +103,7 @@ public class PropertyService {
                     ReflectionUtils.setField(field, propertyToUpdate, value);
                 }
             });
-            return propertyToUpdate;
+            return propertyRepository.save(propertyToUpdate);
         }
         return null;
     }
