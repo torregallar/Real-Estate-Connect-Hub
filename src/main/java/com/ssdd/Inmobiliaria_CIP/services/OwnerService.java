@@ -1,8 +1,11 @@
 package com.ssdd.Inmobiliaria_CIP.services;
 
+import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import com.ssdd.Inmobiliaria_CIP.entities.Agency;
 import com.ssdd.Inmobiliaria_CIP.entities.Owner;
+import com.ssdd.Inmobiliaria_CIP.entities.Property;
 import com.ssdd.Inmobiliaria_CIP.repositories.OwnerRepository;
+import com.ssdd.Inmobiliaria_CIP.repositories.PropertyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
@@ -13,17 +16,35 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 public class OwnerService {
+
     @Autowired
-    private OwnerRepository ownerRepository;;
+    private OwnerRepository ownerRepository;
+
+    @Autowired
+    private PropertyRepository propertyRepository;
 
     public OwnerService(){}
 
     public Owner createOwner(Owner owner){
+        Set<Property> propertySet = owner.getProperties();
+        List<Property> realPropertyList = propertyRepository.findAll();
 
         if (fieldsAreNull(owner)) return null;
+
         owner.setId(0);
 
-        ownerRepository.save(owner);
+        // System.out.println(owner.getProperties().toString());
+
+        for (Property property: propertySet) {
+            for (Property newProperty: realPropertyList) {
+                if (property.getName().equals(newProperty.getName())) {
+                    owner.getProperties().remove(property);
+                    owner.getProperties().add(newProperty);
+                }
+            }
+        }
+
+        ownerRepository.save(owner); // Even tough owner has no properties, we can create owners
 
         return owner;
     }

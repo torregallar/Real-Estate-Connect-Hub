@@ -3,8 +3,6 @@ package com.ssdd.Inmobiliaria_CIP.entities;
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
-
 @Entity
 public class Property {
     @Id
@@ -20,7 +18,7 @@ public class Property {
     private String description;
     @ManyToOne
     @JoinColumn(name = "owner_id")
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
     private Owner owner;
 
@@ -28,7 +26,7 @@ public class Property {
     public Property() {
     }
 
-    public Property(String name, double price, String type, int rooms, int bathrooms, double sqMetres, String address, String description, Owner owner) {
+    public Property(String name, double price, String type, int rooms, int bathrooms, double sqMetres, String address, String description) {
         this.name = name;
         this.price = price;
         this.type = type;
@@ -37,7 +35,10 @@ public class Property {
         this.sqMetres = sqMetres;
         this.address = address;
         this.description = description;
-        this.owner = owner;
+    }
+
+    public Property(int id) {
+        this.id = id;
     }
 
     public int getId() {

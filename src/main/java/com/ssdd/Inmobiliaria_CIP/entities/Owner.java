@@ -15,7 +15,7 @@ public class Owner {
     private long phoneNumber;
     private String email;
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
     private Set<Property> properties = new HashSet<>();
 
@@ -27,6 +27,10 @@ public class Owner {
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.email = email;
+    }
+
+    public Owner(int id) {
+        this.id = id;
     }
 
     public int getId() {

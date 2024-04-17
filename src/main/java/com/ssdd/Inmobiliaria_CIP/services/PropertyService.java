@@ -1,7 +1,5 @@
 package com.ssdd.Inmobiliaria_CIP.services;
 
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
-import com.ssdd.Inmobiliaria_CIP.entities.Agency;
 import com.ssdd.Inmobiliaria_CIP.entities.Owner;
 import com.ssdd.Inmobiliaria_CIP.entities.Property;
 import com.ssdd.Inmobiliaria_CIP.repositories.OwnerRepository;
@@ -13,7 +11,7 @@ import org.springframework.util.ReflectionUtils;
 import java.lang.reflect.Field;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Service
 public class PropertyService {
@@ -61,18 +59,26 @@ public class PropertyService {
     }
 
     public Property updateProperty(int id, Property property) {
+        Owner owner;
         Optional<Property> optionalProperty = propertyRepository.findById(id);
+
         if (optionalProperty.isPresent()) {
             if (fieldsAreNull(property)) return null;
             property.setId(id);
 
-            return propertyRepository.save(property);
+            owner = ownerRepository.findById(property.getOwner().getId()).orElse(null);
+
+            if (owner != null) { // The owner of this property exists, so we can create the property
+                return propertyRepository.save(property);
+            }
         }
         return null;
     }
 
     public Property updatePropertyFields(int id, Map<String, Object> fields) { // Patch function
         Property propertyToUpdate = propertyRepository.findById(id).orElse(null);
+        Owner owner;
+        int ownerId;
 
         if (propertyToUpdate != null) {
 
@@ -109,12 +115,33 @@ public class PropertyService {
             }
 
             fields.forEach((name, value)-> {
-                if (!name.equals("id")) {
+                if (!name.equals("id") && !name.equals("owner")) {
                     Field field = ReflectionUtils.findField(Property.class, name);
                     field.setAccessible(true);
                     ReflectionUtils.setField(field, propertyToUpdate, value);
                 }
             });
+
+            if (fields.containsKey("owner")) {
+                Field field = ReflectionUtils.findField(Property.class, "owner");
+                HashMap<String, Object> ownerFields;
+
+                field.setAccessible(true);
+
+                ownerFields = (HashMap<String, Object>)fields.get("owner"); // Get owner field of property as a HashMap
+
+                if (!ownerFields.isEmpty()) {
+                    ownerId = (int)(ownerFields).get("id"); // Get id of field owner in new property object
+
+                    owner = ownerRepository.findById(ownerId).orElse(null); // Get the real owner object
+
+                    if (owner != null) { // If owner exists
+                        ReflectionUtils.setField(field, propertyToUpdate, owner); // Change owner of property
+                    } else {
+                        return null;
+                    }
+                }
+            }
             return propertyRepository.save(propertyToUpdate);
         }
         return null;
@@ -125,7 +152,8 @@ public class PropertyService {
                 || (property.getType() == null) || (property.getType().isEmpty())
                 || (property.getRooms() <= 0) || (property.getBathrooms() <= 0) || (property.getSqMetres() <= 0.0)
                 || (property.getAddress() == null) || (property.getAddress().isEmpty())
-                || (property.getDescription() == null) || (property.getDescription().isEmpty()))  { // fields validation
+                || (property.getDescription() == null) || (property.getDescription().isEmpty())
+                || (property.getOwner() == null))  { // fields validation
             return true;
         }
         return false;
