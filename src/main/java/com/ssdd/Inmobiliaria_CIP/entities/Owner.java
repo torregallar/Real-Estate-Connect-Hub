@@ -14,10 +14,12 @@ public class Owner {
     private String lastName;
     private long phoneNumber;
     private String email;
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
     private Set<Property> properties = new HashSet<>();
+
+
 
     public Owner() {
     }
@@ -29,8 +31,8 @@ public class Owner {
         this.email = email;
     }
 
-    public Owner(int id) {
-        this.id = id;
+    public Owner(Set<Property> properties) {
+        this.properties = properties;
     }
 
     public int getId() {

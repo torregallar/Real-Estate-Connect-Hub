@@ -24,20 +24,12 @@ public class PropertyService {
     public PropertyService () {}
 
     public Property createProperty(Property property) {
-        Owner owner;
 
         if (fieldsAreNull(property)) return null;
 
         property.setId(0);
 
-        owner = ownerRepository.findById(property.getOwner().getId()).orElse(null);
-
-        if (owner != null) { // The owner of this property exists, so we can create the property
-            property.setOwner(owner);
-            return propertyRepository.save(property);
-        }
-
-        return null;
+        return propertyRepository.save(property);
     }
 
     public List<Property> getProperties() {
@@ -59,26 +51,19 @@ public class PropertyService {
     }
 
     public Property updateProperty(int id, Property property) {
-        Owner owner;
         Optional<Property> optionalProperty = propertyRepository.findById(id);
 
         if (optionalProperty.isPresent()) {
             if (fieldsAreNull(property)) return null;
             property.setId(id);
 
-            owner = ownerRepository.findById(property.getOwner().getId()).orElse(null);
-
-            if (owner != null) { // The owner of this property exists, so we can create the property
-                return propertyRepository.save(property);
-            }
+            return propertyRepository.save(property);
         }
         return null;
     }
 
     public Property updatePropertyFields(int id, Map<String, Object> fields) { // Patch function
         Property propertyToUpdate = propertyRepository.findById(id).orElse(null);
-        Owner owner;
-        int ownerId;
 
         if (propertyToUpdate != null) {
 
@@ -121,29 +106,20 @@ public class PropertyService {
                     ReflectionUtils.setField(field, propertyToUpdate, value);
                 }
             });
-
-            if (fields.containsKey("owner")) {
-                Field field = ReflectionUtils.findField(Property.class, "owner");
-                HashMap<String, Object> ownerFields;
-
-                field.setAccessible(true);
-
-                ownerFields = (HashMap<String, Object>)fields.get("owner"); // Get owner field of property as a HashMap
-
-                if (!ownerFields.isEmpty()) {
-                    ownerId = (int)(ownerFields).get("id"); // Get id of field owner in new property object
-
-                    owner = ownerRepository.findById(ownerId).orElse(null); // Get the real owner object
-
-                    if (owner != null) { // If owner exists
-                        ReflectionUtils.setField(field, propertyToUpdate, owner); // Change owner of property
-                    } else {
-                        return null;
-                    }
-                }
-            }
             return propertyRepository.save(propertyToUpdate);
         }
+        return null;
+    }
+
+    public Property updateOwnerOfProperty(int id, Owner newOwner) {
+        Owner owner = ownerRepository.findById(newOwner.getId()).orElse(null);
+        Property property = propertyRepository.findById(id).orElse(null);
+
+        if (owner != null && property != null) {
+            property.setOwner(owner);
+            return propertyRepository.save(property);
+        }
+
         return null;
     }
 
@@ -152,10 +128,11 @@ public class PropertyService {
                 || (property.getType() == null) || (property.getType().isEmpty())
                 || (property.getRooms() <= 0) || (property.getBathrooms() <= 0) || (property.getSqMetres() <= 0.0)
                 || (property.getAddress() == null) || (property.getAddress().isEmpty())
-                || (property.getDescription() == null) || (property.getDescription().isEmpty())
-                || (property.getOwner() == null))  { // fields validation
+                || (property.getDescription() == null) || (property.getDescription().isEmpty()))  { // fields validation
             return true;
         }
         return false;
     }
+
+
 }

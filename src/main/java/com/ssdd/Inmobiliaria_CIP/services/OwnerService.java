@@ -6,6 +6,7 @@ import com.ssdd.Inmobiliaria_CIP.entities.Owner;
 import com.ssdd.Inmobiliaria_CIP.entities.Property;
 import com.ssdd.Inmobiliaria_CIP.repositories.OwnerRepository;
 import com.ssdd.Inmobiliaria_CIP.repositories.PropertyRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
@@ -26,27 +27,12 @@ public class OwnerService {
     public OwnerService(){}
 
     public Owner createOwner(Owner owner){
-        Set<Property> propertySet = owner.getProperties();
-        List<Property> realPropertyList = propertyRepository.findAll();
 
         if (fieldsAreNull(owner)) return null;
 
         owner.setId(0);
 
-        // System.out.println(owner.getProperties().toString());
-
-        for (Property property: propertySet) {
-            for (Property newProperty: realPropertyList) {
-                if (property.getName().equals(newProperty.getName())) {
-                    owner.getProperties().remove(property);
-                    owner.getProperties().add(newProperty);
-                }
-            }
-        }
-
-        ownerRepository.save(owner); // Even tough owner has no properties, we can create owners
-
-        return owner;
+        return ownerRepository.save(owner);
     }
 
     public List<Owner> getOwners(){
@@ -61,6 +47,7 @@ public class OwnerService {
 
     public Owner deleteOwner(int id){
         Optional<Owner> optionalOwner = ownerRepository.findById(id);
+
         if (optionalOwner.isPresent()) {
             ownerRepository.deleteById(id);
         }
@@ -126,5 +113,56 @@ public class OwnerService {
             return true;
         }
         return false;
+    }
+
+    /*public Owner updatePropertiesOfOwner(int id, Set<Integer> propertyIds) {
+        Owner owner = ownerRepository.findById(id).orElse(null);
+
+
+        if (owner != null) {
+            owner.setProperties(new HashSet<>()); // Initialize properties
+
+            if (propertyIds != null) {
+                for (int propertyId: propertyIds) {
+                    Property propertyAux = propertyRepository.findById(propertyId).orElse(null);
+
+                    if (propertyAux != null) {
+
+                        owner.getProperties().add(propertyAux);
+                        propertyAux.setOwner(owner);
+                        propertyRepository.save(propertyAux);
+                        ownerRepository.save(owner);
+
+                    }
+                }
+            }
+        }
+        return owner;
+    }*/
+
+    @Transactional
+    public Owner updatePropertiesOfOwner(int id, Set<Integer> propertyIds) {
+        Owner owner = ownerRepository.findById(id).orElse(null);
+
+
+        if (owner != null) {
+            owner.setProperties(new HashSet<>()); // Initialize properties
+
+            if (propertyIds != null) {
+                for (int propertyId: propertyIds) {
+                    Property propertyAux = propertyRepository.findById(propertyId).orElse(null);
+
+                    if (propertyAux != null) {
+
+                        owner.getProperties().add(propertyAux);
+                        propertyAux.setOwner(owner);
+                        propertyRepository.save(propertyAux);
+                        ownerRepository.save(owner);
+
+                    }
+                }
+            }
+        }
+        return owner;
     }
 }

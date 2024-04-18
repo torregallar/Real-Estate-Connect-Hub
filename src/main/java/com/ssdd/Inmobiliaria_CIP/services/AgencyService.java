@@ -28,8 +28,7 @@ public class AgencyService {
         if (fieldsAreNull(agency)) return null;
         agency.setId(0);
 
-        agencyRepository.save(agency);
-        return agency;
+        return agencyRepository.save(agency);
     }
 
     public List<Agency> getAgencies() {

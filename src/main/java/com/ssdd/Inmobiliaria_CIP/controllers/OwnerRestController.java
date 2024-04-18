@@ -1,6 +1,8 @@
 package com.ssdd.Inmobiliaria_CIP.controllers;
 
+import com.ssdd.Inmobiliaria_CIP.entities.ListadoPropertyIds;
 import com.ssdd.Inmobiliaria_CIP.entities.Owner;
+import com.ssdd.Inmobiliaria_CIP.entities.Property;
 import com.ssdd.Inmobiliaria_CIP.services.OwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/owners")
@@ -65,6 +68,29 @@ public class OwnerRestController {
         if (updatedOwner != null) {
             return ResponseEntity.ok(updatedOwner);
         }
+        return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/{id}/properties")
+    public ResponseEntity<Set<Property>> getOwnerProperties(@PathVariable int id){
+        Owner owner = ownerService.getOwner(id);
+        if(owner != null){
+            Set<Property> properties = owner.getProperties();
+            if (properties != null && !properties.isEmpty()) {
+                return ResponseEntity.ok(properties);
+            }
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @PatchMapping("/{id}/properties")
+    public ResponseEntity<Owner> updatePropertiesOfOwner(@PathVariable int id, @RequestBody ListadoPropertyIds newOwner) {
+
+        Owner updatedOwner = ownerService.updatePropertiesOfOwner(id, newOwner.getProperties());
+        if (updatedOwner != null) {
+            return ResponseEntity.ok(updatedOwner);
+        }
+
         return ResponseEntity.notFound().build();
     }
 

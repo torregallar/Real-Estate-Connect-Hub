@@ -1,5 +1,6 @@
 package com.ssdd.Inmobiliaria_CIP.controllers;
 
+import com.ssdd.Inmobiliaria_CIP.entities.Owner;
 import com.ssdd.Inmobiliaria_CIP.entities.Property;
 import com.ssdd.Inmobiliaria_CIP.services.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +69,27 @@ public class PropertyRestController {
     @PatchMapping("/{id}")
     public ResponseEntity<Property> updatePropertyFields(@PathVariable int id, @RequestBody Map<String, Object> fields) {
         Property updatedProperty = propertyService.updatePropertyFields(id, fields);
+        if (updatedProperty != null) {
+            return ResponseEntity.ok(updatedProperty);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/{id}/owner")
+    public ResponseEntity<Owner> getOwnerOfProperty(@PathVariable int id) {
+        Property property = propertyService.getProperty(id);
+        if (property != null) {
+            Owner owner = property.getOwner();
+            if (owner != null) {
+                return ResponseEntity.ok(owner);
+            }
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @PatchMapping("/{id}/owner")
+    public ResponseEntity<Property> updateOwnerOfProperty(@PathVariable int id, @RequestBody Owner newOwner) {
+        Property updatedProperty = propertyService.updateOwnerOfProperty(id, newOwner);
         if (updatedProperty != null) {
             return ResponseEntity.ok(updatedProperty);
         }

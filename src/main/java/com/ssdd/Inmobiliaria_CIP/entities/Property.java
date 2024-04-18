@@ -37,10 +37,6 @@ public class Property {
         this.description = description;
     }
 
-    public Property(int id) {
-        this.id = id;
-    }
-
     public int getId() {
         return id;
     }

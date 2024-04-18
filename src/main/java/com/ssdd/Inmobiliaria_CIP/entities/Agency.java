@@ -5,6 +5,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
 @Entity
 public class Agency {
     @Id
@@ -13,6 +18,8 @@ public class Agency {
     private String name;
     private long phone;
     private String email;
+
+
 
     public Agency() {
     }
