@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import java.util.*;
 
 @Entity
+@Table(name = "owner")
 public class Owner {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -14,12 +15,15 @@ public class Owner {
     private String lastName;
     private long phoneNumber;
     private String email;
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
     private Set<Property> properties = new HashSet<>();
 
-
+    @ManyToMany(mappedBy = "owners", cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
+    private Set<Agency> agencies = new HashSet<>();
 
     public Owner() {
     }
@@ -82,5 +86,13 @@ public class Owner {
 
     public void setProperties(Set<Property> properties) {
         this.properties = properties;
+    }
+
+    public Set<Agency> getAgencies() {
+        return agencies;
+    }
+
+    public void setAgencies(Set<Agency> agencies) {
+        this.agencies = agencies;
     }
 }

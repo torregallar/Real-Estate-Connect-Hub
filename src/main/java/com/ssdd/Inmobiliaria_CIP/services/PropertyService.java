@@ -56,6 +56,7 @@ public class PropertyService {
         if (optionalProperty.isPresent()) {
             if (fieldsAreNull(property)) return null;
             property.setId(id);
+            property.setOwner(optionalProperty.get().getOwner()); // We need to save the past owner
 
             return propertyRepository.save(property);
         }

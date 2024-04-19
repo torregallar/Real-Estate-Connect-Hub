@@ -1,6 +1,9 @@
 package com.ssdd.Inmobiliaria_CIP.controllers;
 
 import com.ssdd.Inmobiliaria_CIP.entities.Agency;
+import com.ssdd.Inmobiliaria_CIP.entities.ListadoOwnerIds;
+import com.ssdd.Inmobiliaria_CIP.entities.ListadoPropertyIds;
+import com.ssdd.Inmobiliaria_CIP.entities.Owner;
 import com.ssdd.Inmobiliaria_CIP.services.AgencyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/agencies")
@@ -68,6 +72,33 @@ public class AgencyRestController {
         if (updatedAgency != null) {
             return ResponseEntity.ok(updatedAgency);
         }
+        return ResponseEntity.badRequest().build();
+    }
+
+    @GetMapping("/{id}/owners")
+    public ResponseEntity<Set<Owner>> getAgenciesOfOwner(@PathVariable int id){
+        Agency agency = agencyService.getAgency(id);
+        if(agency != null){
+            Set<Owner> owners = agency.getOwners();
+            if (owners != null && !owners.isEmpty()) {
+                return ResponseEntity.ok(owners);
+            }
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @PatchMapping("/{id}/owners")
+    public ResponseEntity<Agency> updateOwnersOfAgency(@PathVariable int id, @RequestBody ListadoOwnerIds newOwners) {
+
+        if (newOwners.getOwners() == null) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        Agency updatedAgency = agencyService.updateOwnersOfAgency(id, newOwners.getOwners());
+        if (updatedAgency != null) {
+            return ResponseEntity.ok(updatedAgency);
+        }
+
         return ResponseEntity.badRequest().build();
     }
 

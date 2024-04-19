@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import com.ssdd.Inmobiliaria_CIP.entities.Agency;
 import com.ssdd.Inmobiliaria_CIP.entities.Owner;
 import com.ssdd.Inmobiliaria_CIP.entities.Property;
+import com.ssdd.Inmobiliaria_CIP.repositories.AgencyRepository;
 import com.ssdd.Inmobiliaria_CIP.repositories.OwnerRepository;
 import com.ssdd.Inmobiliaria_CIP.repositories.PropertyRepository;
 import jakarta.transaction.Transactional;
@@ -23,6 +24,9 @@ public class OwnerService {
 
     @Autowired
     private PropertyRepository propertyRepository;
+
+    @Autowired
+    private AgencyRepository agencyRepository;
 
     public OwnerService(){}
 
@@ -115,12 +119,53 @@ public class OwnerService {
         return false;
     }
 
-    /*public Owner updatePropertiesOfOwner(int id, Set<Integer> propertyIds) {
+    @Transactional
+    public Owner updatePropertiesOfOwner(int id, Set<Integer> propertyIds) {
         Owner owner = ownerRepository.findById(id).orElse(null);
 
+        if (propertyIds == null) {
+            return null;
+        }
 
         if (owner != null) {
+            Set <Property> actualProperties = owner.getProperties();
             owner.setProperties(new HashSet<>()); // Initialize properties
+
+            if (propertyIds != null) {
+
+                for (Property actualProperty: actualProperties) {
+                    if (!propertyIds.contains(actualProperty.getId())) { // if new properties does not contain some of past properties, these will be deleted (Cause they won't have owner)
+                        propertyRepository.delete(actualProperty);
+                    }
+                }
+
+                for (int propertyId: propertyIds) {
+                    Property propertyAux = propertyRepository.findById(propertyId).orElse(null);
+
+                    if (propertyAux != null) {
+
+                        owner.getProperties().add(propertyAux);
+                        propertyAux.setOwner(owner);
+                        propertyRepository.save(propertyAux);
+                        ownerRepository.save(owner);
+
+                    }
+                }
+            }
+        }
+        return owner;
+    }
+
+    @Transactional
+    public Owner addPropertiesToOwner(int id, Set<Integer> propertyIds) {
+        Owner owner = ownerRepository.findById(id).orElse(null);
+
+        if (propertyIds == null) {
+            return null;
+        }
+
+        if (owner != null) {
+            Set <Property> actualProperties = owner.getProperties();
 
             if (propertyIds != null) {
                 for (int propertyId: propertyIds) {
@@ -138,26 +183,25 @@ public class OwnerService {
             }
         }
         return owner;
-    }*/
+    }
 
-    @Transactional
-    public Owner updatePropertiesOfOwner(int id, Set<Integer> propertyIds) {
+    public Owner updateAgenciesOfOwner(int id, Set<Integer> agenciesIds) {
         Owner owner = ownerRepository.findById(id).orElse(null);
-
+        Set<Owner> owners;
 
         if (owner != null) {
-            owner.setProperties(new HashSet<>()); // Initialize properties
+            if (agenciesIds != null) {
+                for (int agencyId: agenciesIds) {
+                    Agency agencyAux = agencyRepository.findById(agencyId).orElse(null);
 
-            if (propertyIds != null) {
-                for (int propertyId: propertyIds) {
-                    Property propertyAux = propertyRepository.findById(propertyId).orElse(null);
+                    if (agencyAux != null) {
+                        owners = agencyAux.getOwners(); // Get actual owners of newAgencies
+                        owners.add(owner); // Add actual owner to the owner list of the new Agency
 
-                    if (propertyAux != null) {
-
-                        owner.getProperties().add(propertyAux);
-                        propertyAux.setOwner(owner);
-                        propertyRepository.save(propertyAux);
-                        ownerRepository.save(owner);
+                        owner.getAgencies().add(agencyAux); // We update both tables because it does not work if we update just one entity (It should be some H2 restriction)
+                        agencyAux.setOwners(owners);
+                        agencyRepository.save(agencyAux);
+                        ownerRepository.saveAndFlush(owner);
 
                     }
                 }

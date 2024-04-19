@@ -1,6 +1,7 @@
 package com.ssdd.Inmobiliaria_CIP.services;
 
 import com.ssdd.Inmobiliaria_CIP.entities.Agency;
+import com.ssdd.Inmobiliaria_CIP.entities.Owner;
 import com.ssdd.Inmobiliaria_CIP.entities.Property;
 import com.ssdd.Inmobiliaria_CIP.repositories.AgencyRepository;
 import com.ssdd.Inmobiliaria_CIP.repositories.OwnerRepository;
@@ -80,7 +81,7 @@ public class AgencyService {
             }
 
             fields.forEach((name, value) -> {
-                if (!name.equals("id")) {
+                if (!name.equals("id") && (!name.equals("owners"))) {
                     Field field = ReflectionUtils.findField(Agency.class, name);
                     field.setAccessible(true);
                     ReflectionUtils.setField(field, agencyToUpdate, value);
@@ -90,6 +91,9 @@ public class AgencyService {
         }
         return null;
     }
+
+
+
 
     private boolean fieldsAreNull(Agency agency) {
         if ((agency.getName() == null) || (agency.getName().isEmpty()) || (agency.getEmail() == null) || (agency.getEmail().isEmpty()) || (agency.getPhone() == 0) ) { // fields validation
@@ -104,5 +108,33 @@ public class AgencyService {
             return true;
         }
         return false;
+    }
+
+    public Agency updateOwnersOfAgency(int id, Set<Integer> ownersIds) {
+        Agency agency = agencyRepository.findById(id).orElse(null);
+        Set<Agency> agencies;
+
+        if (agency != null) {
+            if (ownersIds != null) {
+                for (int ownerId: ownersIds) {
+                    Owner ownerAux = ownerRepository.findById(ownerId).orElse(null);
+
+                    if (ownerAux != null) {
+                        agencies = ownerAux.getAgencies();
+                        agencies.add(agency);
+
+                        agency.getOwners().add(ownerAux);
+                        ownerAux.setAgencies(agencies);
+
+                        ownerRepository.save(ownerAux);
+                        agencyRepository.save(agency);
+
+                    }
+                }
+            }
+        }
+
+        return agency;
+
     }
 }

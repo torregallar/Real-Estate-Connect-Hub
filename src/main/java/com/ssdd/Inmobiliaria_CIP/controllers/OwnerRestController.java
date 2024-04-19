@@ -1,8 +1,6 @@
 package com.ssdd.Inmobiliaria_CIP.controllers;
 
-import com.ssdd.Inmobiliaria_CIP.entities.ListadoPropertyIds;
-import com.ssdd.Inmobiliaria_CIP.entities.Owner;
-import com.ssdd.Inmobiliaria_CIP.entities.Property;
+import com.ssdd.Inmobiliaria_CIP.entities.*;
 import com.ssdd.Inmobiliaria_CIP.services.OwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -84,9 +82,40 @@ public class OwnerRestController {
     }
 
     @PatchMapping("/{id}/properties")
-    public ResponseEntity<Owner> updatePropertiesOfOwner(@PathVariable int id, @RequestBody ListadoPropertyIds newOwner) {
+    public ResponseEntity<Owner> updatePropertiesOfOwner(@PathVariable int id, @RequestBody ListadoPropertyIds newProperties) {
 
-        Owner updatedOwner = ownerService.updatePropertiesOfOwner(id, newOwner.getProperties());
+        if (newProperties.getProperties() == null) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        Owner updatedOwner = ownerService.updatePropertiesOfOwner(id, newProperties.getProperties());
+        if (updatedOwner != null) {
+            return ResponseEntity.ok(updatedOwner);
+        }
+
+        return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/{id}/agencies")
+    public ResponseEntity<Set<Agency>> getAgenciesOfOwner(@PathVariable int id){
+        Owner owner = ownerService.getOwner(id);
+        if(owner != null){
+            Set<Agency> properties = owner.getAgencies();
+            if (properties != null && !properties.isEmpty()) {
+                return ResponseEntity.ok(properties);
+            }
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @PatchMapping("/{id}/agencies")
+    public ResponseEntity<Owner> updateAgenciesOfOwner(@PathVariable int id, @RequestBody ListadoAgencyIds newAgencies) {
+
+        if (newAgencies.getAgencies() == null) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        Owner updatedOwner = ownerService.updateAgenciesOfOwner(id, newAgencies.getAgencies());
         if (updatedOwner != null) {
             return ResponseEntity.ok(updatedOwner);
         }

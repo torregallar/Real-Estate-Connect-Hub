@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "properties")
 public class Property {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,8 +17,8 @@ public class Property {
     private double sqMetres;
     private String address;
     private String description;
-    @ManyToOne
-    @JoinColumn(name = "owner_id")
+    @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "owner_id", updatable = true)
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
     private Owner owner;
@@ -26,7 +27,7 @@ public class Property {
     public Property() {
     }
 
-    public Property(String name, double price, String type, int rooms, int bathrooms, double sqMetres, String address, String description) {
+    public Property(String name, double price, String type, int rooms, int bathrooms, double sqMetres, String address, String description, Owner owner) {
         this.name = name;
         this.price = price;
         this.type = type;
@@ -35,6 +36,7 @@ public class Property {
         this.sqMetres = sqMetres;
         this.address = address;
         this.description = description;
+        this.owner = owner;
     }
 
     public int getId() {

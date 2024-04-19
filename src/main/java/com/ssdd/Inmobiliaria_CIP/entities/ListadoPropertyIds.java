@@ -4,11 +4,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ListadoPropertyIds {
-    private Set<Integer> properties = new HashSet<>();
+    private Set<Integer> properties;
 
     private ListadoPropertyIds() {
     }
-
 
     public Set<Integer> getProperties() {
         return properties;
