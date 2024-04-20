@@ -50,13 +50,27 @@ public class AgencyService {
         return optionalAgency.orElse(null);
     }
 
-    public Agency updateAgency (int id, Agency agency) {
+    /*public Agency updateAgency (int id, Agency agency) {
         Optional<Agency> optionalAgency = agencyRepository.findById(id);
         if (optionalAgency.isPresent()) {
             if (fieldsAreNull(agency)) return null;
             agency.setId(id);
+            agency.setOwners(optionalAgency.get().getOwners());
 
             return agencyRepository.save(agency);
+        }
+        return null;
+    }*/
+
+    public Agency updateAgency (int id, Agency agency) {
+        Optional<Agency> optionalAgency = agencyRepository.findById(id);
+        if (optionalAgency.isPresent()) {
+            if (fieldsAreNull(agency)) return null;
+            optionalAgency.get().setName(agency.getName());
+            optionalAgency.get().setEmail(agency.getEmail());
+            optionalAgency.get().setPhone(agency.getPhone());
+
+            return agencyRepository.save(optionalAgency.get());
         }
         return null;
     }
@@ -116,6 +130,14 @@ public class AgencyService {
 
         if (agency != null) {
             if (ownersIds != null) {
+                Set<Owner> actualOwners = agency.getOwners();
+
+                for (Owner actualOwner: actualOwners) {
+                    if (!ownersIds.contains(actualOwner.getId())) {
+                        agencyRepository.deleteAgencyOwnerMapping(id, actualOwner.getId());
+                    }
+                }
+
                 for (int ownerId: ownersIds) {
                     Owner ownerAux = ownerRepository.findById(ownerId).orElse(null);
 

@@ -62,9 +62,12 @@ public class OwnerService {
         Optional<Owner> optionalOwner = ownerRepository.findById(id);
         if (optionalOwner.isPresent()) {
             if (fieldsAreNull(owner)) return null;
-            owner.setId(id);
+            optionalOwner.get().setName(owner.getName());
+            optionalOwner.get().setLastName(owner.getLastName());
+            optionalOwner.get().setEmail(owner.getEmail());
+            optionalOwner.get().setPhoneNumber(owner.getPhoneNumber());
 
-            return ownerRepository.save(owner);
+            return ownerRepository.save(optionalOwner.get());
         }
         return null;
     }
@@ -156,34 +159,6 @@ public class OwnerService {
         return owner;
     }
 
-    @Transactional
-    public Owner addPropertiesToOwner(int id, Set<Integer> propertyIds) {
-        Owner owner = ownerRepository.findById(id).orElse(null);
-
-        if (propertyIds == null) {
-            return null;
-        }
-
-        if (owner != null) {
-            Set <Property> actualProperties = owner.getProperties();
-
-            if (propertyIds != null) {
-                for (int propertyId: propertyIds) {
-                    Property propertyAux = propertyRepository.findById(propertyId).orElse(null);
-
-                    if (propertyAux != null) {
-
-                        owner.getProperties().add(propertyAux);
-                        propertyAux.setOwner(owner);
-                        propertyRepository.save(propertyAux);
-                        ownerRepository.save(owner);
-
-                    }
-                }
-            }
-        }
-        return owner;
-    }
 
     public Owner updateAgenciesOfOwner(int id, Set<Integer> agenciesIds) {
         Owner owner = ownerRepository.findById(id).orElse(null);
@@ -191,6 +166,14 @@ public class OwnerService {
 
         if (owner != null) {
             if (agenciesIds != null) {
+                Set<Agency> actualAgencies = owner.getAgencies();
+
+                for (Agency actualAgency: actualAgencies) {
+                    if (!agenciesIds.contains(actualAgency.getId())) {
+                        agencyRepository.deleteAgencyOwnerMapping(actualAgency.getId(), id);
+                    }
+                }
+
                 for (int agencyId: agenciesIds) {
                     Agency agencyAux = agencyRepository.findById(agencyId).orElse(null);
 
