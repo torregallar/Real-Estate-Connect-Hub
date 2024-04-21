@@ -50,18 +50,6 @@ public class AgencyService {
         return optionalAgency.orElse(null);
     }
 
-    /*public Agency updateAgency (int id, Agency agency) {
-        Optional<Agency> optionalAgency = agencyRepository.findById(id);
-        if (optionalAgency.isPresent()) {
-            if (fieldsAreNull(agency)) return null;
-            agency.setId(id);
-            agency.setOwners(optionalAgency.get().getOwners());
-
-            return agencyRepository.save(agency);
-        }
-        return null;
-    }*/
-
     public Agency updateAgency (int id, Agency agency) {
         Optional<Agency> optionalAgency = agencyRepository.findById(id);
         if (optionalAgency.isPresent()) {

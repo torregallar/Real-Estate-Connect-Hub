@@ -1,6 +1,7 @@
 package com.ssdd.Inmobiliaria_CIP.services;
 
 import com.ssdd.Inmobiliaria_CIP.entities.Owner;
+import com.ssdd.Inmobiliaria_CIP.entities.OwnerId;
 import com.ssdd.Inmobiliaria_CIP.entities.Property;
 import com.ssdd.Inmobiliaria_CIP.repositories.OwnerRepository;
 import com.ssdd.Inmobiliaria_CIP.repositories.PropertyRepository;
@@ -112,8 +113,8 @@ public class PropertyService {
         return null;
     }
 
-    public Property updateOwnerOfProperty(int id, Owner newOwner) {
-        Owner owner = ownerRepository.findById(newOwner.getId()).orElse(null);
+    public Property updateOwnerOfProperty(int id, OwnerId ownerId) {
+        Owner owner = ownerRepository.findById(ownerId.getOwner()).orElse(null);
         Property property = propertyRepository.findById(id).orElse(null);
 
         if (owner != null && property != null) {
@@ -136,4 +137,7 @@ public class PropertyService {
     }
 
 
+    public List<Owner> getExistingOwners() {
+        return ownerRepository.findAll();
+    }
 }

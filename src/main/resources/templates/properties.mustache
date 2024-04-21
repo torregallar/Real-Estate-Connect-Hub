@@ -23,6 +23,12 @@
                     <strong>Surface:</strong> {{sqMetres}}<br>
                     <strong>Address:</strong> {{address}}<br>
                     <strong>Description:</strong> {{description}}<br>
+                    {{#owner}}
+                        <strong>Owner:</strong> {{owner.name}} {{owner.lastName}}<br>
+                    {{/owner}}
+                    {{^owner}}
+                        <strong class="text-red-400">Owner:</strong> This property has not owner<br>
+                    {{/owner}}
                 </li>
             </ul>
         {{/properties}}
