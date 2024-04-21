@@ -9,31 +9,71 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="font-mono">
-    <main class="flex flex-col h-screen text-center bg-blue-200 justify-center items-center">
-        <h1 class="text-black mb-4 text-4xl bold">{{agency.name}} Details</h1>
-        <div class="flex inset-0 mx-auto border-2 px-4 py-8 bg-white shadow-lg rounded-lg h-3/5 w-3/5 overflow-auto justify-center items-center">
-            {{#agency}}
-                <div class="block px-6 py-4 text-2xl justify-start">
-                    <strong>Name:</strong> {{agency.name}}<br>
-                    <strong>Phone:</strong> {{agency.phone}}<br>
-                    <strong>Email:</strong> {{agency.email}}<br>
+    <main>
+        <div class="flex flex-col h-screen text-center bg-blue-200 justify-center items-center">
+            <h1 class="text-black mb-4 text-4xl bold">{{agency.name}} Details</h1>
+            <div class="flex inset-0 mx-auto border-2 px-4 py-8 bg-white shadow-lg rounded-lg h-3/5 w-3/5 overflow-auto justify-center items-center">
+                {{#agency}}
+                    <div class="block px-6 py-4 text-2xl justify-start">
+                        <strong>Name:</strong> {{agency.name}}<br>
+                        <strong>Phone:</strong> {{agency.phone}}<br>
+                        <strong>Email:</strong> {{agency.email}}<br>
+                        <strong>Owners</strong> <a class="text-green-400" href="#owners"> See Clients</a>
+                    </div>
+                {{/agency}}
+            </div>
+            <div class="mt-2 flex flex-row">
+                <button id="deleteButton_{{agency.id}}" data-entity="agency" class="ml-2 bg-white bg-opacity-50 hover:bg-red-500 transition-all duration-300 font-bold text-black py-2 px-3 rounded">
+                    Delete Agency
+                </button>
+                <button onclick="window.location.href='/agencies'" class="ml-2 bg-white bg-opacity-50 hover:bg-opacity-100 transition-all duration-300 font-bold text-black py-2 px-3 rounded">
+                    Back to Agencies List
+                </button>
+                <button onclick="window.location.href='/agency/modify/{{agency.id}}'" class="ml-2 bg-white bg-opacity-50 hover:bg-green-300 transition-all duration-300 font-bold text-black py-2 px-3 rounded">
+                    Modify Agency
+                </button>
+            </div>
+        </div>
+        {{#agency}}
+            <div id="owners" class="flex flex-col h-screen text-center bg-blue-200 justify-center items-center border-t-2">
+                <h1 class="text-black mb-4 text-4xl bold">{{agency.name}} Clients</h1>
+                <div class="block inset-0 mx-auto border-2 px-4 py-8 bg-white shadow-lg rounded-lg h-3/5 w-3/5 overflow-auto">
+                    {{#owners}}
+                        <ul class="text-black">
+                            <li class="rounded-lg bg-blue-100 mb-2 hover:bg-blue-300 transition-all duration-300" id="owner_{{id}}">
+                                <strong class="text-3xl">{{name}} {{lastName}}</strong><br>
+                                <strong>Phone number:</strong> {{phoneNumber}}<br>
+                                <strong>Email:</strong> {{email}}<br>
+                            </li>
+                        </ul>
+                    {{/owners}}
                 </div>
-            {{/agency}}
-        </div>
-        <div class="mt-2 flex flex-row">
-            <button id="deleteButton_{{agency.id}}" data-entity="agency" class="ml-2 bg-white bg-opacity-50 hover:bg-red-500 transition-all duration-300 font-bold text-black py-2 px-3 rounded">
-                Delete Agency
-            </button>
-            <button onclick="window.location.href='/agencies'" class="ml-2 bg-white bg-opacity-50 hover:bg-opacity-100 transition-all duration-300 font-bold text-black py-2 px-3 rounded">
-                Back to Agencies List
-            </button>
-            <button onclick="window.location.href='/agency/modify/{{agency.id}}'" class="ml-2 bg-white bg-opacity-50 hover:bg-green-300 transition-all duration-300 font-bold text-black py-2 px-3 rounded">
-                Modify Agency
-            </button>
-        </div>
+                <div class="mt-2 flex flex-row">
+                    <button onclick="window.location.href='/agency/modify/{{agency.id}}/modifyOwners'" class="ml-2 bg-white bg-opacity-50 hover:bg-green-300 transition-all duration-300 font-bold text-black py-2 px-3 rounded">
+                        Modify Owners
+                    </button>
+                </div>
+            </div>
+        {{/agency}}
     </main>
-
     <script src="/scripts/delete.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            var ownerList = document.querySelectorAll('[id^="owner_"]');
+
+            ownerList.forEach(function(owner) {
+                owner.addEventListener('click', function() {
+
+                    var id = owner.id;
+
+                    id = id.replace('owner_', '');
+
+                    window.location.href = '/owner/' + id;
+                });
+            });
+        });
+    </script>
 
 </body>
 </html>

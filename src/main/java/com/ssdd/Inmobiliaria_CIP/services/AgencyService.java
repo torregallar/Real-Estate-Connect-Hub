@@ -17,6 +17,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Service
 public class AgencyService {
 
+
     @Autowired
     private AgencyRepository agencyRepository;
     @Autowired
@@ -146,5 +147,9 @@ public class AgencyService {
 
         return agency;
 
+    }
+
+    public List<Owner> getExistingOwners() {
+        return ownerRepository.findAll();
     }
 }

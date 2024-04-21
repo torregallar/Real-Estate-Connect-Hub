@@ -1,6 +1,7 @@
 package com.ssdd.Inmobiliaria_CIP.controllers;
 
 import com.ssdd.Inmobiliaria_CIP.entities.Agency;
+import com.ssdd.Inmobiliaria_CIP.entities.Owner;
 import com.ssdd.Inmobiliaria_CIP.entities.Property;
 import com.ssdd.Inmobiliaria_CIP.services.AgencyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Controller
 public class AgencyController {
@@ -54,5 +57,17 @@ public class AgencyController {
     public String modifyAgency(@PathVariable int id, Agency agency) {
         agencyService.updateAgency(id, agency);
         return "redirect:/agency/{id}";
+    }
+
+    @GetMapping("/agency/modify/{id}/modifyOwners")
+    public String getAgencyModifyOwners (Model model, @PathVariable int id) {
+        Agency agency = agencyService.getAgency(id);
+        List<Owner> existingOwners = agencyService.getExistingOwners();
+        if (agency != null) {
+            model.addAttribute("agency", agency);
+            model.addAttribute("existingOwners", existingOwners);
+            return "agency-modify-owners";
+        }
+        return "redirect:/agencies";
     }
 }
