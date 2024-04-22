@@ -2,6 +2,7 @@ package com.ssdd.Inmobiliaria_CIP.controllers;
 
 import com.ssdd.Inmobiliaria_CIP.entities.Agency;
 import com.ssdd.Inmobiliaria_CIP.entities.Owner;
+import com.ssdd.Inmobiliaria_CIP.entities.Property;
 import com.ssdd.Inmobiliaria_CIP.services.OwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -58,7 +59,7 @@ public class OwnerController {
     }
 
     @GetMapping("/owner/modify/{id}/modifyAgencies")
-    public String modifyAgenciesOfOwner(Model model, @PathVariable int id) {
+    public String getOwnerModifyAgencies(Model model, @PathVariable int id) {
         Owner owner = ownerService.getOwner(id);
         List<Agency> existingAgencies = ownerService.getExistingAgencies();
         if (owner != null) {
@@ -85,4 +86,32 @@ public class OwnerController {
         return "redirect:/owners";
     }
 
+
+    @GetMapping("/owner/modify/{id}/modifyProperties")
+    public String getOwnerModifyProperties(Model model, @PathVariable int id) {
+        Owner owner = ownerService.getOwner(id);
+        List<Property> existingProperties = ownerService.getExistingProperties();
+        if (owner != null) {
+            model.addAttribute("owner", owner);
+            model.addAttribute("existingProperties", existingProperties);
+            return "owner-modify-properties";
+        }
+        return "redirect:/owners";
+    }
+
+    @GetMapping("/owner/modify/{id}/modifyPropertiesOfOwner")
+    public String modifyPropertiesOfOwner(@PathVariable int id, @RequestParam(name = "ids") Set<Integer> propertiesIds, Model model) {
+        Owner owner = ownerService.getOwner(id);
+        if (owner != null) {
+            if (!propertiesIds.isEmpty()) {
+                ownerService.updatePropertiesOfOwner(id, propertiesIds);
+            } else {
+                ownerService.updatePropertiesOfOwner(id, new HashSet<>());
+            }
+
+            return "redirect:/owner/" + id;
+        }
+
+        return "redirect:/owners";
+    }
 }

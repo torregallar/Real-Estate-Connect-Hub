@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owner modifying properties</title>
+
+    <link rel="icon" type="image/png" href="../static/images/CIP_Icon.png">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="font-mono">
+<main>
+    <div class="flex flex-col h-screen text-center bg-blue-200 justify-center items-center">
+        <h1 class="text-black mb-4 text-4xl bold">{{owner.name}}: Modifying Properties</h1>
+        <div class="flex flex-col justify-center items-center inset-0 mx-auto border-2 bg-white shadow-lg rounded-lg h-3/4 w-3/4 overflow-auto">
+            <div id="checkBoxWrapper_{{id}}" class="flex flex-wrap justify-center items-center">
+                {{#existingProperties}}
+                    <div class="flex items-center border-2 border-gray-200 px-1 py-2 m-2 rounded-lg">
+                        <input type="checkbox" id="checkBox_{{id}}" name="owners" value="{{id}}">
+                        <label id="checkBoxOption_{{id}}" for="checkBox_{{id}}" class="text-2xl w-fit h-fit">{{name}}</label>
+                    </div>
+                {{/existingProperties}}
+            </div>
+            <div class="mt-2 flex flex-row">
+                <button onclick="changeProperties({{owner.id}})" class="ml-2 bg-green-400 bg-opacity-50 hover:bg-opacity-100 transition-all duration-300 font-bold text-black py-2 px-3 rounded">
+                    Change properties
+                </button>
+            </div>
+        </div>
+        <div class="mt-2 flex flex-row">
+            <button onclick="window.location.href='/owner/{{owner.id}}'" class="ml-2 bg-white bg-opacity-50 hover:bg-opacity-100 transition-all duration-300 font-bold text-black py-2 px-3 rounded">
+                Back to owner details
+            </button>
+            <button onclick="window.location.href='/owners'" class="ml-2 bg-white bg-opacity-50 hover:bg-opacity-100 transition-all duration-300 font-bold text-black py-2 px-3 rounded">
+                Back to Owners List
+            </button>
+        </div>
+    </div>
+</main>
+<script>
+    var checkBoxList = [];
+    document.querySelectorAll('[id^="checkBox_"]').forEach(function (checkbox) { // Get all existing agencies
+        checkBoxList.push(checkbox)
+    })
+
+    var actualOwner = document.querySelector('[id^="checkBoxWrapper_"]').id.replace("checkBoxWrapper_", "") // Get the actual owner id
+    var propertiesOfOwner = []
+    fetch('/api/owners/' + actualOwner + '/properties')
+            .then(response => {
+                if (response.ok) {
+                    return response.json()
+                }
+                throw new Error('Network response was not ok.');
+            })
+            .then(data => {
+                propertiesOfOwner = data
+                propertiesOfOwner.forEach(function (actualProperty) {
+                    checkBoxList.forEach(function (checkbox) {
+                        if (actualProperty.id.toString() === checkbox.value) {
+                            checkbox.checked = true
+                        }
+                    })
+                })
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+            })
+
+    function changeProperties(ownerId) {
+        var checkBoxListIds = [];
+        document.querySelectorAll('[id^="checkBox_"]').forEach(function (checkbox) { // Get all existing agencies
+            if (checkbox.checked)  {
+                checkBoxListIds.push(checkbox.value)
+            }
+        })
+
+        var idsParameter = checkBoxListIds.toString().replace("[","").replace("]","")
+
+        window.location.href = "/owner/modify/" + ownerId + "/modifyPropertiesOfOwner?ids=" + idsParameter;
+    }
+
+</script>
+
+</body>
+</html>

@@ -21,6 +21,7 @@
                         <strong>Phone number:</strong>{{owner.phoneNumber}}<br>
                         <strong>Email:</strong> {{owner.email}}<br>
                         <strong>Agencies:</strong> <a class="text-green-400" href="#agencies"> See Agencies</a>
+                        <strong>Properties:</strong> <a class="text-green-400" href="#properties"> See Agencies</a>
                     </div>
                 {{/owner}}
             </div>
@@ -56,6 +57,30 @@
                     </button>
                 </div>
             </div>
+            <div id="properties" class="flex flex-col h-screen text-center bg-blue-200 justify-center items-center border-t-2">
+                <h1 class="text-black mb-4 text-4xl bold">{{owner.name}} {{owner.lastName}} Properties</h1>
+                <div class="block inset-0 mx-auto border-2 px-4 py-8 bg-white shadow-lg rounded-lg h-3/5 w-3/5 overflow-auto">
+                    {{#properties}}
+                        <ul class="text-black">
+                            <li class="rounded-lg bg-blue-100 mb-2 hover:bg-blue-300 transition-all duration-300" id="property_{{id}}">
+                                <strong>Name:</strong> {{name}}<br>
+                                <strong>Price:</strong> {{price}}<br>
+                                <strong>Type:</strong> {{type}}<br>
+                                <strong>Rooms:</strong> {{rooms}}<br>
+                                <strong>Bathrooms:</strong> {{bathrooms}}<br>
+                                <strong>Surface:</strong> {{sqMetres}}<br>
+                                <strong>Address:</strong> {{address}}<br>
+                                <strong>Description:</strong> {{description}}<br>
+                            </li>
+                        </ul>
+                    {{/properties}}
+                </div>
+                <div class="mt-2 flex flex-row">
+                    <button onclick="window.location.href='/owner/modify/{{owner.id}}/modifyProperties'" class="ml-2 bg-white bg-opacity-50 hover:bg-green-300 transition-all duration-300 font-bold text-black py-2 px-3 rounded">
+                        Modify Properties
+                    </button>
+                </div>
+            </div>
         {{/owner}}
     </main>
 
@@ -64,6 +89,7 @@
         document.addEventListener('DOMContentLoaded', function() {
 
             var agenciesList = document.querySelectorAll('[id^="agency_"]');
+            var propertiesList = document.querySelectorAll('[id^="property_"]');
 
             agenciesList.forEach(function(agency) {
                 agency.addEventListener('click', function() {
@@ -73,6 +99,17 @@
                     id = id.replace('agency_', '');
 
                     window.location.href = '/agency/' + id;
+                });
+            });
+
+            propertiesList.forEach(function(property) {
+                property.addEventListener('click', function() {
+
+                    var id = property.id;
+
+                    id = id.replace('property_', '');
+
+                    window.location.href = '/property/' + id;
                 });
             });
         });
