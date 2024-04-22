@@ -81,17 +81,16 @@ public class AgencyController {
     }
 
     @GetMapping("/agency/modify/{id}/modifyOwnersOfAgency")
-    public String modifyOwnersOfAgency(@PathVariable int id, @RequestParam(name = "encodeIds") String encodeIds, Model model) {
+    public String modifyOwnersOfAgency(@PathVariable int id, @RequestParam(name = "ids") Set<Integer> ownerIds) {
         Agency agency = agencyService.getAgency(id);
         if (agency != null) {
-            String decodeIds = URLDecoder.decode(encodeIds, StandardCharsets.UTF_8);
+            if (!ownerIds.isEmpty()) {
+                agencyService.updateOwnersOfAgency(id, ownerIds);
+            } else {
+                agencyService.updateOwnersOfAgency(id, new HashSet<>());
+            }
 
-            System.out.println(decodeIds);
-
-            model.addAttribute("agency", agencyService.getAgency(id));
-            return "agency-details";
-
-
+            return "redirect:/agency/" + id;
         }
 
         return "redirect:/agencies";

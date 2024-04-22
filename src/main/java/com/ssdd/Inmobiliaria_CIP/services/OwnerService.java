@@ -192,4 +192,8 @@ public class OwnerService {
         }
         return owner;
     }
+
+    public List<Agency> getExistingAgencies() {
+        return agencyRepository.findAll();
+    }
 }
