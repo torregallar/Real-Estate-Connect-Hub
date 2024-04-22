@@ -12,14 +12,20 @@
 <main>
     <div class="flex flex-col h-screen text-center bg-blue-200 justify-center items-center">
         <h1 class="text-black mb-4 text-4xl bold">{{agency.name}}: Modifying owners</h1>
-        <div class="flex-col inset-0 mx-auto border-2 px-4 py-8 bg-white shadow-lg rounded-lg h-3/5 w-3/5 overflow-auto justify-center items-center">
-        <select id="selectOwners" multiple class="block w-full h-full px-4 py-2 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-blue-400 focus:ring focus:ring-blue-400">
-            {{#existingOwners}}
-                <option value="{{id}}">
-                    <strong class="text-2xl">{{name}}</strong><br>
-                </option>
-            {{/existingOwners}}
-        </select>
+        <div class="flex flex-col justify-center items-center inset-0 mx-auto border-2 bg-white shadow-lg rounded-lg h-3/4 w-3/4 overflow-auto">
+            <div id="checkBoxWrapper_{{id}}" class="flex flex-wrap justify-center items-center">
+                {{#existingOwners}}
+                    <div class="flex items-center border-2 border-gray-200 px-1 py-2 m-2 rounded-lg">
+                        <input type="checkbox" id="checkBox_{{id}}" name="owners" value="{{id}}">
+                        <label id="checkBoxOption_{{id}}" for="checkBox_{{id}}" class="text-2xl w-fit h-fit">{{name}}</label>
+                    </div>
+                {{/existingOwners}}
+            </div>
+            <div class="mt-2 flex flex-row">
+                <button onclick="changeOwners({{agency.id}})" class="ml-2 bg-green-400 bg-opacity-50 hover:bg-opacity-100 transition-all duration-300 font-bold text-black py-2 px-3 rounded">
+                    Change properties
+                </button>
+            </div>
         </div>
         <div class="mt-2 flex flex-row">
             <button onclick="window.location.href='/agency/{{agency.id}}'" class="ml-2 bg-white bg-opacity-50 hover:bg-opacity-100 transition-all duration-300 font-bold text-black py-2 px-3 rounded">
@@ -32,20 +38,48 @@
     </div>
 </main>
 <script>
-    var select = document.getElementById("selectOwners");
+    var checkBoxList = [];
+    document.querySelectorAll('[id^="checkBox_"]').forEach(function (checkbox) { // Get all existing owners
+        checkBoxList.push(checkbox)
+    })
 
-    select.addEventListener("click", function(event) {
+    var actualAgency = document.querySelector('[id^="checkBoxWrapper_"]').id.replace("checkBoxWrapper_", "") // Get the actual agency id
+    var ownersOfAgency = []
+    fetch('/api/agencies/' + actualAgency + '/owners')
+            .then(response => {
+                if (response.ok) {
+                    return response.json()
+                }
+                throw new Error('Network response was not ok.');
+            })
+            .then(data => {
+                ownersOfAgency = data
+                ownersOfAgency.forEach(function (actualOwner) {
+                    checkBoxList.forEach(function (checkbox) {
+                        if (actualOwner.id.toString() === checkbox.value) {
+                            checkbox.checked = true
+                        }
+                    })
+                })
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+            })
 
-        event.preventDefault();
+    function changeOwners(agencyId) {
+        var checkBoxListIds = [];
+        document.querySelectorAll('[id^="checkBox_"]').forEach(function (checkbox) { // Get all existing owners
+            checkBoxListIds.push(checkbox.value)
+        })
 
-        var option = event.target;
+        var encodeIds = encodeURIComponent(JSON.stringify(checkBoxListIds))
 
-        if (option.selected) {
-            option.selected = false;
-        } else {
-            option.selected = true;
-        }
-    });
+        console.log(encodeIds)
+
+        window.location.href = "/agency/modify/" + agencyId + "/modifyOwnersOfAgency" + encodeIds;
+
+    }
+
 </script>
 
 </body>

@@ -6,7 +6,7 @@ import java.util.Set;
 public class ListadoOwnerIds {
     private Set<Integer> owners;
 
-    private ListadoOwnerIds() {
+    public ListadoOwnerIds() {
     }
 
 

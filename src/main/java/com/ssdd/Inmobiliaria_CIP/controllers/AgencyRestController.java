@@ -96,7 +96,7 @@ public class AgencyRestController {
 
         Agency updatedAgency = agencyService.updateOwnersOfAgency(id, newOwners.getOwners());
         if (updatedAgency != null) {
-            return ResponseEntity.ok(updatedAgency);
+            return ResponseEntity.ok(agencyService.getAgency(id));
         }
 
         return ResponseEntity.badRequest().build();

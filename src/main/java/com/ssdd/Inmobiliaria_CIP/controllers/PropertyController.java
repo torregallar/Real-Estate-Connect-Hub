@@ -62,10 +62,13 @@ public class PropertyController {
 
     @GetMapping("/property/modify/{id}/modifyOwner/{ownerId}")
     public String modifyOwnerOfProperty(@PathVariable int id, @PathVariable int ownerId, Model model) {
-        propertyService.updateOwnerOfProperty(id, new OwnerId(ownerId));
-        model.addAttribute("property", propertyService.getProperty(id));
-        model.addAttribute("existingOwners", propertyService.getExistingOwners());
-        return "/property-details";
+        Property property = propertyService.updateOwnerOfProperty(id, new OwnerId(ownerId));
+        if (property != null) {
+            model.addAttribute("property", propertyService.getProperty(id));
+            model.addAttribute("existingOwners", propertyService.getExistingOwners());
+            return "/property-details";
+        }
+        return "redirect:/properties";
     }
 
 }

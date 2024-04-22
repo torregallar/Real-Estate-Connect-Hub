@@ -1,17 +1,26 @@
 package com.ssdd.Inmobiliaria_CIP.controllers;
 
 import com.ssdd.Inmobiliaria_CIP.entities.Agency;
+import com.ssdd.Inmobiliaria_CIP.entities.ListadoOwnerIds;
 import com.ssdd.Inmobiliaria_CIP.entities.Owner;
 import com.ssdd.Inmobiliaria_CIP.entities.Property;
+import com.ssdd.Inmobiliaria_CIP.repositories.AgencyRepository;
 import com.ssdd.Inmobiliaria_CIP.services.AgencyService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class AgencyController {
@@ -70,4 +79,23 @@ public class AgencyController {
         }
         return "redirect:/agencies";
     }
+
+    @GetMapping("/agency/modify/{id}/modifyOwnersOfAgency")
+    public String modifyOwnersOfAgency(@PathVariable int id, @RequestParam(name = "encodeIds") String encodeIds, Model model) {
+        Agency agency = agencyService.getAgency(id);
+        if (agency != null) {
+            String decodeIds = URLDecoder.decode(encodeIds, StandardCharsets.UTF_8);
+
+            System.out.println(decodeIds);
+
+            model.addAttribute("agency", agencyService.getAgency(id));
+            return "agency-details";
+
+
+        }
+
+        return "redirect:/agencies";
+
+    }
+
 }
