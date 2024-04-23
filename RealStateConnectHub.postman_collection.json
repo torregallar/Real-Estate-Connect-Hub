@@ -275,6 +275,40 @@
 					"response": []
 				},
 				{
+					"name": "get Owners of Agency",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/agencies/1/owners",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"agencies",
+								"1",
+								"owners"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "I --> Inmobiliaria ivan",
 					"request": {
 						"method": "PUT",
@@ -359,6 +393,37 @@
 								"api",
 								"agencies",
 								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Owners of Agency",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"owners\": [1, 2]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/agencies/1/owners",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"agencies",
+								"1",
+								"owners"
 							]
 						}
 					},
@@ -622,13 +687,69 @@
 					"response": []
 				},
 				{
+					"name": "get Properties of Owner",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/owners/2/properties",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"owners",
+								"2",
+								"properties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get Agencies of Owner",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/owners/1/agencies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"owners",
+								"1",
+								"agencies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Carlos --> Pepe",
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\r\n        \"name\": \"Pepe\",\r\n        \"lastName\": \"Bolívar\",\r\n        \"phoneNumber\": \"678700965\",\r\n        \"email\": \"pepe@gmail.com\"\r\n    }",
+							"raw": "    {\r\n        \"name\": \"Pepe\",\r\n        \"lastName\": \"Bolívar\",\r\n        \"phoneNumber\": \"678700965\",\r\n        \"email\": \"pepe@gmail.com\"\r\n\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -697,6 +818,68 @@
 								"api",
 								"owners",
 								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Properties of Owner",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"properties\": [1, 2, 3]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/owners/2/properties",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"owners",
+								"2",
+								"properties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Agencies of Owner",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"agencies\": [1, 3]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/owners/2/agencies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"owners",
+								"2",
+								"agencies"
 							]
 						}
 					},
@@ -960,6 +1143,28 @@
 					"response": []
 				},
 				{
+					"name": "get Owner of Properties",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/properties/1/owner",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"properties",
+								"1",
+								"owner"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "change Ático Mostoles-->san Fernando",
 					"request": {
 						"method": "PUT",
@@ -1017,7 +1222,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"description\": \"En septima planta,sin ascensor. Construido en 1996\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Casa plata\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1025,7 +1230,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/properties/5",
+							"raw": "http://localhost:8080/api/properties/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1034,7 +1239,38 @@
 							"path": [
 								"api",
 								"properties",
-								"5"
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Owner Chalet Madrid",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"owner\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/properties/1/owner",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"properties",
+								"1",
+								"owner"
 							]
 						}
 					},

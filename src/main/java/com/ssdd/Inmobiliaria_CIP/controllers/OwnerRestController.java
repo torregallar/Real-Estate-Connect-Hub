@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -76,6 +77,8 @@ public class OwnerRestController {
             Set<Property> properties = owner.getProperties();
             if (properties != null && !properties.isEmpty()) {
                 return ResponseEntity.ok(properties);
+            } else {
+                return ResponseEntity.ok(new HashSet<>());
             }
         }
         return ResponseEntity.notFound().build();
@@ -103,6 +106,8 @@ public class OwnerRestController {
             Set<Agency> properties = owner.getAgencies();
             if (properties != null && !properties.isEmpty()) {
                 return ResponseEntity.ok(properties);
+            } else {
+                return ResponseEntity.ok(new HashSet<>());
             }
         }
         return ResponseEntity.notFound().build();

@@ -31,9 +31,10 @@
                                 </option>
                             {{/existingOwners}}
                         </select>
+                        <button onclick="window.location.href='/owner/{{property.owner.id}}'" class="ml-2 bg-green-300 bg-opacity-50 hover:bg-green-500 transition-all duration-300 text-black text-xl y-2 px-3 rounded">See Owner Details</button>
                     {{/property.owner}}
                     {{^property.owner}}
-                        <strong class="font-bold">Owner:</strong> <span class="text-red-500">This property has no owner</span>
+                        <strong class="font-bold">Owner:</strong> <span class="text-red-500">This property has not owner</span>
                         <button onclick="showPopUp()" class="ml-2 bg-green-300 bg-opacity-50 hover:bg-green-500 transition-all duration-300 text-black text-xl y-2 px-3 rounded">Add Owner</button>
                         <div id="popup" class="hidden inset-0 justify-center items-center border-2 rounded-lg mt-5">
                             <div class="bg-white p-8 rounded-lg border-gray-500 border-2">

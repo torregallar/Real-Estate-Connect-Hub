@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -82,6 +83,8 @@ public class AgencyRestController {
             Set<Owner> owners = agency.getOwners();
             if (owners != null && !owners.isEmpty()) {
                 return ResponseEntity.ok(owners);
+            } else {
+                return ResponseEntity.ok(new HashSet<>());
             }
         }
         return ResponseEntity.notFound().build();

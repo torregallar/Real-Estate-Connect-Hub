@@ -51,10 +51,18 @@ public class OwnerService {
 
     public Owner deleteOwner(int id){
         Optional<Owner> optionalOwner = ownerRepository.findById(id);
-
         if (optionalOwner.isPresent()) {
+            Set<Agency> agenciesOfOwner = optionalOwner.get().getAgencies();
+            Set<Property> propertiesOfOwner = optionalOwner.get().getProperties();
+
+            for (Agency agency: agenciesOfOwner) {
+                agency.getOwners().remove(optionalOwner.get());
+                agencyRepository.deleteAgencyOwnerMapping(agency.getId(), id); // We need to delete relations with owner to complete deletion correctly
+            }
+
             ownerRepository.deleteById(id);
         }
+
         return optionalOwner.orElse(null);
     }
 

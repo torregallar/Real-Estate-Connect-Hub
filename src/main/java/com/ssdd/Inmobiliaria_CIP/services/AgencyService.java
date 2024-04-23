@@ -46,6 +46,12 @@ public class AgencyService {
     public Agency deleteAgency (int id) {
         Optional<Agency> optionalAgency = agencyRepository.findById(id);
         if (optionalAgency.isPresent()) {
+            Set<Owner> ownersOfAgency = optionalAgency.get().getOwners();
+
+            for (Owner owner: ownersOfAgency) {
+                owner.getAgencies().remove(optionalAgency.get());
+                agencyRepository.deleteAgencyOwnerMapping(id, owner.getId()); // We need to delete relations with owner to complete deletion correctly
+            }
             agencyRepository.deleteById(id);
         }
         return optionalAgency.orElse(null);
