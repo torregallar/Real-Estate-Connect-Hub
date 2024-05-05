@@ -1,24 +1,26 @@
 package com.ssdd.Inmobiliaria_CIP.services;
 
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
-import com.ssdd.Inmobiliaria_CIP.entities.Agency;
+import com.ssdd.Inmobiliaria_CIP.entities.Owner;
+import com.ssdd.Inmobiliaria_CIP.entities.OwnerId;
 import com.ssdd.Inmobiliaria_CIP.entities.Property;
+import com.ssdd.Inmobiliaria_CIP.repositories.OwnerRepository;
+import com.ssdd.Inmobiliaria_CIP.repositories.PropertyRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Service
 public class PropertyService {
 
-    private Map<Integer, Property> properties = new HashMap<>();
-    private AtomicInteger nextId = new AtomicInteger(0);
+    @Autowired
+    private PropertyRepository propertyRepository;
+    @Autowired
+    private OwnerRepository ownerRepository;
 
     public PropertyService () {}
 
@@ -26,38 +28,46 @@ public class PropertyService {
 
         if (fieldsAreNull(property)) return null;
 
-        int id = nextId.incrementAndGet();
-        property.setId(id);
-        properties.put(id, property);
+        property.setId(0);
 
-        return property;
+        return propertyRepository.save(property);
     }
 
     public List<Property> getProperties() {
-        return new ArrayList<>(properties.values());
+        return propertyRepository.findAll();
     }
 
     public Property getProperty(int id) {
-        return properties.get(id);
+        Optional<Property> optionalProperty = propertyRepository.findById(id);
+
+        return optionalProperty.orElse(null);
     }
 
     public Property deleteProperty(int id) {
-        return properties.remove(id);
+        Optional<Property> optionalProperty = propertyRepository.findById(id);
+        if (optionalProperty.isPresent()) {
+            propertyRepository.deleteById(id);
+        }
+        return optionalProperty.orElse(null);
     }
 
     public Property updateProperty(int id, Property property) {
-        if (properties.containsKey(id)) { // Verifies if Map contains given id
+        Optional<Property> optionalProperty = propertyRepository.findById(id);
+
+        if (optionalProperty.isPresent()) {
             if (fieldsAreNull(property)) return null;
             property.setId(id);
-            properties.put(id, property);
-            return property;
+            property.setOwner(optionalProperty.get().getOwner()); // We need to save the past owner
+
+            return propertyRepository.save(property);
         }
         return null;
     }
 
     public Property updatePropertyFields(int id, Map<String, Object> fields) { // Patch function
-        if (properties.containsKey(id)) {
-            Property propertyToUpdate = properties.get(id);
+        Property propertyToUpdate = propertyRepository.findById(id).orElse(null);
+
+        if (propertyToUpdate != null) {
 
             if (fields.containsKey("name") && fields.get("name").toString().isEmpty()) {
                 return null;
@@ -92,14 +102,26 @@ public class PropertyService {
             }
 
             fields.forEach((name, value)-> {
-                if (!name.equals("id")) {
+                if (!name.equals("id") && !name.equals("owner")) {
                     Field field = ReflectionUtils.findField(Property.class, name);
                     field.setAccessible(true);
                     ReflectionUtils.setField(field, propertyToUpdate, value);
                 }
             });
-            return propertyToUpdate;
+            return propertyRepository.save(propertyToUpdate);
         }
+        return null;
+    }
+
+    public Property updateOwnerOfProperty(int id, OwnerId ownerId) {
+        Owner owner = ownerRepository.findById(ownerId.getOwner()).orElse(null);
+        Property property = propertyRepository.findById(id).orElse(null);
+
+        if (owner != null && property != null) {
+            property.setOwner(owner);
+            return propertyRepository.save(property);
+        }
+
         return null;
     }
 
@@ -112,5 +134,10 @@ public class PropertyService {
             return true;
         }
         return false;
+    }
+
+
+    public List<Owner> getExistingOwners() {
+        return ownerRepository.findAll();
     }
 }

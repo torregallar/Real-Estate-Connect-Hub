@@ -1,15 +1,29 @@
 package com.ssdd.Inmobiliaria_CIP.entities;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import com.fasterxml.jackson.annotation.*;
+import jakarta.persistence.*;
 
+import java.util.*;
+
+@Entity
+@Table(name = "owner")
 public class Owner {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
     private String lastName;
     private long phoneNumber;
     private String email;
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
+    private Set<Property> properties = new HashSet<>();
+
+    @ManyToMany(mappedBy = "owners", cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
+    private Set<Agency> agencies = new HashSet<>();
 
     public Owner() {
     }
@@ -19,6 +33,10 @@ public class Owner {
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.email = email;
+    }
+
+    public Owner(Set<Property> properties) {
+        this.properties = properties;
     }
 
     public int getId() {
@@ -60,5 +78,21 @@ public class Owner {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Set<Property> getProperties() {
+        return properties;
+    }
+
+    public void setProperties(Set<Property> properties) {
+        this.properties = properties;
+    }
+
+    public Set<Agency> getAgencies() {
+        return agencies;
+    }
+
+    public void setAgencies(Set<Agency> agencies) {
+        this.agencies = agencies;
     }
 }

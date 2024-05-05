@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agency modifying owners</title>
+
+    <link rel="icon" type="image/png" href="../static/images/CIP_Icon.png">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="font-mono">
+<main>
+    <div class="flex flex-col h-screen text-center bg-blue-200 justify-center items-center">
+        <h1 class="text-black mb-4 text-4xl bold">{{agency.name}}: Modifying owners</h1>
+        <div class="flex flex-col justify-center items-center inset-0 mx-auto border-2 bg-white shadow-lg rounded-lg h-3/4 w-3/4 overflow-auto">
+            <div id="checkBoxWrapper_{{id}}" class="flex flex-wrap justify-center items-center">
+                {{#existingOwners}}
+                    <div class="flex items-center border-2 border-gray-200 px-1 py-2 m-2 rounded-lg">
+                        <input type="checkbox" id="checkBox_{{id}}" name="owners" value="{{id}}">
+                        <label id="checkBoxOption_{{id}}" for="checkBox_{{id}}" class="text-2xl w-fit h-fit">{{name}}</label>
+                    </div>
+                {{/existingOwners}}
+            </div>
+            <div class="mt-2 flex flex-row">
+                <button onclick="changeOwners({{agency.id}})" class="ml-2 bg-green-400 bg-opacity-50 hover:bg-opacity-100 transition-all duration-300 font-bold text-black py-2 px-3 rounded">
+                    Change owners
+                </button>
+            </div>
+        </div>
+        <div class="mt-2 flex flex-row">
+            <button onclick="window.location.href='/agency/{{agency.id}}'" class="ml-2 bg-white bg-opacity-50 hover:bg-opacity-100 transition-all duration-300 font-bold text-black py-2 px-3 rounded">
+                Back to property details
+            </button>
+            <button onclick="window.location.href='/agencies'" class="ml-2 bg-white bg-opacity-50 hover:bg-opacity-100 transition-all duration-300 font-bold text-black py-2 px-3 rounded">
+                Back to Agencies List
+            </button>
+        </div>
+    </div>
+</main>
+<script>
+    var checkBoxList = [];
+    document.querySelectorAll('[id^="checkBox_"]').forEach(function (checkbox) { // Get all existing owners
+        checkBoxList.push(checkbox)
+    })
+
+    var actualAgency = document.querySelector('[id^="checkBoxWrapper_"]').id.replace("checkBoxWrapper_", "") // Get the actual agency id
+    var ownersOfAgency = []
+    console.log(actualAgency)
+    fetch('/api/agencies/' + actualAgency + '/owners')
+            .then(response => {
+                if (response.ok) {
+                    console.log("He entrado")
+                    return response.json()
+                }
+            })
+            .then(data => {
+                console.log(data)
+                if (data !== null) {
+                    ownersOfAgency = data;
+                    ownersOfAgency.forEach(function (actualOwner) {
+                        checkBoxList.forEach(function (checkbox) {
+                            if (actualOwner.id.toString() === checkbox.value) {
+                                checkbox.checked = true
+                            }
+                        })
+                    })
+                }
+            })
+            .catch(error => {
+                console.log("Catch")
+                console.error('Fetch error:', error);
+            })
+
+    function changeOwners(agencyId) {
+        var checkBoxListIds = [];
+        document.querySelectorAll('[id^="checkBox_"]').forEach(function (checkbox) { // Get all existing owners
+            if (checkbox.checked)  {
+                checkBoxListIds.push(checkbox.value)
+            }
+        })
+
+        var idsParameter = checkBoxListIds.toString().replace("[","").replace("]","")
+
+        window.location.href = "/agency/modify/" + agencyId + "/modifyOwnersOfAgency?ids=" + idsParameter;
+    }
+
+</script>
+
+</body>
+</html>

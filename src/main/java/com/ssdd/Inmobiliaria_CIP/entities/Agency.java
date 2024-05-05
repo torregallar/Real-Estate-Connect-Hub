@@ -1,10 +1,39 @@
 package com.ssdd.Inmobiliaria_CIP.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import jakarta.persistence.*;
+
+import java.util.*;
+
+@Entity
+@Table(name = "agencies")
 public class Agency {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
     private long phone;
     private String email;
+
+    @ManyToMany(cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
+    @JoinTable(
+            name = "agency_owner_map",
+            joinColumns = @JoinColumn(
+                    name = "agency_id",
+                    referencedColumnName = "id",
+                    updatable = true
+            ),
+            inverseJoinColumns = @JoinColumn(
+                    name = "owner_id",
+                    referencedColumnName = "id",
+                    updatable = true
+            )
+    )
+    private Set<Owner> owners = new HashSet<>();
 
     public Agency() {
     }
@@ -46,5 +75,13 @@ public class Agency {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Set<Owner> getOwners() {
+        return owners;
+    }
+
+    public void setOwners(Set<Owner> owners) {
+        this.owners = owners;
     }
 }

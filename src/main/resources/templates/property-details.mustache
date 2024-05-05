@@ -13,7 +13,7 @@
         <h1 class="text-black mb-4 text-4xl bold">{{property.name}} Details</h1>
         <div class="flex inset-0 mx-auto border-2 px-4 py-8 bg-white shadow-lg rounded-lg h-3/5 w-3/5 overflow-auto justify-center items-center">
             {{#property}}
-                <div class="block px-6 py-4 text-2xl justify-start">
+                <div id="property_{{property.id}}" class="block px-6 py-4 text-2xl justify-start">
                     <strong>Name:</strong> {{property.name}}<br>
                     <strong>Price:</strong> {{property.price}}<br>
                     <strong>Type:</strong> {{property.type}}<br>
@@ -22,6 +22,36 @@
                     <strong>Surface:</strong> {{property.sqMetres}}<br>
                     <strong>Address:</strong> {{property.address}}<br>
                     <strong>Description:</strong> {{property.description}}<br>
+                    {{#property.owner}}
+                        <strong>Owner:</strong>
+                        <select id="selectOwners_{{property.owner.id}}">
+                            {{#existingOwners}}
+                                <option value="{{id}}">
+                                    {{name}}
+                                </option>
+                            {{/existingOwners}}
+                        </select>
+                        <button onclick="window.location.href='/owner/{{property.owner.id}}'" class="ml-2 bg-green-300 bg-opacity-50 hover:bg-green-500 transition-all duration-300 text-black text-xl y-2 px-3 rounded">See Owner Details</button>
+                    {{/property.owner}}
+                    {{^property.owner}}
+                        <strong class="font-bold">Owner:</strong> <span class="text-red-500">This property has not owner</span>
+                        <button onclick="showPopUp()" class="ml-2 bg-green-300 bg-opacity-50 hover:bg-green-500 transition-all duration-300 text-black text-xl y-2 px-3 rounded">Add Owner</button>
+                        <div id="popup" class="hidden inset-0 justify-center items-center border-2 rounded-lg mt-5">
+                            <div class="bg-white p-8 rounded-lg border-gray-500 border-2">
+                                <h2 class="text-xl font-bold mb-4">Select an Owner</h2>
+                                <select class="text-xl rounded-lg bg-blue-100 mb-5" id="selectOwners_none">
+                                    <option>       </option>
+                                    {{#existingOwners}}
+                                        <option value="{{id}}">
+                                            {{name}}
+                                        </option>
+                                    {{/existingOwners}}
+                                </select><br>
+                                <button onclick="hidePopUp()" class="mt-7 bg-red-300 bg-opacity-50 hover:bg-red-500 transition-all duration-300 text-black text-xl y-2 px-3 rounded">Close</button>
+                            </div>
+                        </div>
+                    {{/property.owner}}
+
                 </div>
             {{/property}}
         </div>
@@ -39,6 +69,7 @@
     </main>
 
     <script src="/scripts/delete.js"></script>
+    <script src="/scripts/selectedOwner.js"></script>
 
 </body>
 </html>
