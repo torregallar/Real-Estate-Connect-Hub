@@ -14,7 +14,7 @@
 	<name>Inmobiliaria_CIP</name>
 	<description>Práctica Grupal de SSDD</description>
 	<properties>
-		<java.version>21</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -52,7 +52,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>es.ssdd.Inmobiliaria_CIP.InmobiliariaCipApplication</mainClass>
+					<mainClass>com.ssdd.Inmobiliaria_CIP.InmobiliariaCipApplication</mainClass>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>

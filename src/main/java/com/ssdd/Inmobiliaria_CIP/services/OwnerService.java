@@ -57,7 +57,7 @@ public class OwnerService {
 
             for (Agency agency: agenciesOfOwner) {
                 agency.getOwners().remove(optionalOwner.get());
-                agencyRepository.deleteAgencyOwnerMapping(agency.getId(), id); // We need to delete relations with owner to complete deletion correctly
+                //agencyRepository.deleteAgencyOwnerMapping(agency.getId(), id); // We need to delete relations with owner to complete deletion correctly
             }
 
             ownerRepository.deleteById(id);

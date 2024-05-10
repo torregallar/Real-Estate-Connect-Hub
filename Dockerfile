@@ -1,7 +1,7 @@
 ##################################
 # Docker image to compile
 ##################################
-FROM maven:3.9.5- as builder
+FROM maven:3.8.5-openjdk-17 as builder
 
 # Working directory
 WORKDIR /project
@@ -21,7 +21,7 @@ RUN mvn package -o -DskipTests=true
 #################################################
 # Docker base image for app container
 #################################################
-FROM openjdk:21
+FROM openjdk:17
 
 # Define el directorio de trabajo donde se encuentra el JAR
 WORKDIR /usr/app/
@@ -33,4 +33,4 @@ COPY --from=builder /project/target/*.jar /usr/app/
 EXPOSE 8080
 
 # Comando que se ejecuta al hacer docker run
-CMD [ "java", "-jar", "app.jar" ]
+CMD [ "java", "-jar", "Inmobiliaria_CIP-0.0.1-SNAPSHOT.jar" ]
