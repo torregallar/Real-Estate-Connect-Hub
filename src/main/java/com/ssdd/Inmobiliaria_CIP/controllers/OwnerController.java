@@ -48,7 +48,7 @@ public class OwnerController {
     @GetMapping("/owner/modify/{id}")
     public String modifyOwner(@PathVariable int id, Model model){
         model.addAttribute("owner", ownerService.getOwner(id));
-        return "/modify-owner";
+        return "modify-owner";
     }
 
 

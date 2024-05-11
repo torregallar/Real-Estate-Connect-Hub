@@ -51,7 +51,7 @@ public class PropertyController {
     @GetMapping("/property/modify/{id}")
     public String modifyProperty(@PathVariable int id, Model model) {
         model.addAttribute("property", propertyService.getProperty(id));
-        return "/modify-property";
+        return "modify-property";
     }
 
     @PostMapping("/property/modify/{id}")
@@ -64,9 +64,7 @@ public class PropertyController {
     public String modifyOwnerOfProperty(@PathVariable int id, @PathVariable int ownerId, Model model) {
         Property property = propertyService.updateOwnerOfProperty(id, new OwnerId(ownerId));
         if (property != null) {
-            model.addAttribute("property", propertyService.getProperty(id));
-            model.addAttribute("existingOwners", propertyService.getExistingOwners());
-            return "/property-details";
+            return "redirect:/property/{id}";
         }
         return "redirect:/properties";
     }

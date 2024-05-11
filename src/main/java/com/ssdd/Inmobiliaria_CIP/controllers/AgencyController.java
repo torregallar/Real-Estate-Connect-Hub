@@ -59,7 +59,7 @@ public class AgencyController {
     @GetMapping("/agency/modify/{id}")
     public String modifyAgency(@PathVariable int id, Model model) {
         model.addAttribute("agency", agencyService.getAgency(id));
-        return "/modify-agency";
+        return "modify-agency";
     }
 
     @PostMapping("/agency/modify/{id}")

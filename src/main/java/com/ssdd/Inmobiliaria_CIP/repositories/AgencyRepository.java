@@ -11,7 +11,7 @@ public interface AgencyRepository extends JpaRepository<Agency, Integer> {
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM AGENCY_OWNER_MAP WHERE AGENCY_ID = :agencyId AND OWNER_ID = :ownerId", nativeQuery = true)
+    @Query(value = "DELETE FROM agency_owner_map WHERE AGENCY_ID = :agencyId AND OWNER_ID = :ownerId", nativeQuery = true)
     void deleteAgencyOwnerMapping(@Param("agencyId") int agencyId, @Param("ownerId") int ownerId);
 
 
